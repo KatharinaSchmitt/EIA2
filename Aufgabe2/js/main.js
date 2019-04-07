@@ -40,15 +40,14 @@ function verteileKarten() {
         let x = 0;
         ;
         {
-            x = Math.floor((Math.random() * alleKarten.length));
-            x = x - 1;
-            handkarten.push(alleKarten[x]);
+            x = Math.floor((Math.random() * alleKarten.length - 1));
             let prodElement = document.createElement('div');
             let karte = `
             <p class="${alleKarten[x]}">${alleKarten[x]}</p>
             `;
             prodElement.innerHTML = karte;
             document.getElementById("Handkarten").appendChild(prodElement);
+            handkarten.push(alleKarten[x]);
             alleKarten.splice(x, 1);
         }
     }

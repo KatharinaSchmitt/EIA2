@@ -46,12 +46,9 @@ erstelleKartenarray ()
 function verteileKarten () {
     let handkarten:string [] = [];
        
-    for (let y = parseFloat (anzahl); handkarten.length <= y-1;) {
+    for (let y = parseFloat (anzahl); handkarten.length <= y - 1;) {
         let x:number = 0; ; {
-            x = Math.floor((Math.random() * alleKarten.length));
-            x= x - 1; 
-
-            handkarten.push(alleKarten[x]);
+            x = Math.floor((Math.random() * alleKarten.length - 1 ));
             
             let prodElement = document.createElement('div');
             let karte: string= `
@@ -60,10 +57,11 @@ function verteileKarten () {
             prodElement.innerHTML = karte;
             document.getElementById("Handkarten").appendChild(prodElement);
             
+            handkarten.push(alleKarten[x]);
             alleKarten.splice(x, 1);
         }
+        }
     }
-}
 
 verteileKarten ()
 
