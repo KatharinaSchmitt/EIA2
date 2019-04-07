@@ -17,50 +17,48 @@ function erstelleKartenarray() {
     for (let i = 0; i <= 32; i++) {
         if (i < 8) {
             symbol = "Herz " + wert[i];
-            alleKarten.splice(0, 0, "Herz " + wert[i]);
+            alleKarten.splice(0, 0, symbol);
         }
         else if (i >= 8 && i < 16) {
             symbol = "Pik " + wert[i % 8];
-            alleKarten.splice(0, 0, "Pik " + wert[i % 8]);
+            alleKarten.splice(0, 0, symbol);
         }
         else if (i >= 16 && i < 24) {
             symbol = "Karo " + wert[i % 8];
-            alleKarten.splice(0, 0, "Karo " + wert[i % 8]);
+            alleKarten.splice(0, 0, symbol);
         }
         else if (i >= 24 && i < 32) {
             symbol = "Kreuz " + wert[i % 8];
-            alleKarten.splice(0, 0, "Kreuz " + wert[i % 8]);
+            alleKarten.splice(0, 0, symbol);
         }
     }
 }
 erstelleKartenarray();
 function verteileKarten() {
     let handkarten = [];
-    for (let y = parseFloat(anzahl); handkarten.length <= y - 1;) {
+    let anzahlHandkarten = parseFloat(anzahl);
+    for (let y = 0; y < anzahlHandkarten; y++) {
         let x = 0;
-        ;
-        {
-            x = Math.floor((Math.random() * alleKarten.length - 1));
-            let prodElement = document.createElement('div');
-            let karte = `
-            <p class="${alleKarten[x]}">${alleKarten[x]}</p>
+        x = Math.floor((Math.random() * alleKarten.length));
+        let prodElement = document.createElement('div');
+        document.getElementById("Handkarten").appendChild(prodElement);
+        handkarten.push(alleKarten[x]);
+        let karte = `
+            <p class="${handkarten[y]}">${handkarten[y]}</p>
             `;
-            prodElement.innerHTML = karte;
-            document.getElementById("Handkarten").appendChild(prodElement);
-            handkarten.push(alleKarten[x]);
-            alleKarten.splice(x, 1);
-        }
+        prodElement.innerHTML = karte;
+        alleKarten.splice(x, 1);
     }
 }
 verteileKarten();
 function zeigeKartenstapel() {
-    for (let b = 0; b <= alleKarten.length - 1; b++) {
+    for (let b = 0; b < alleKarten.length; b++) {
         let prodElement = document.createElement('div');
+        document.getElementById("Spielkarten").appendChild(prodElement);
         let karte = `
             <p class="${alleKarten[b]}">${alleKarten[b]}</p>
             `;
         prodElement.innerHTML = karte;
-        document.getElementById("Spielkarten").appendChild(prodElement);
     }
 }
 zeigeKartenstapel();
