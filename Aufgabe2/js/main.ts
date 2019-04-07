@@ -45,21 +45,23 @@ erstelleKartenarray ()
 
 function verteileKarten () {
     let handkarten:string [] = [];
-       
-    for (let y = parseFloat (anzahl); handkarten.length <= y - 1;) {
-        let x:number = 0; ; {
+       let anzahlHandkarten = parseFloat (anzahl)
+    for (let y:number = 0 ; y < anzahlHandkarten; y++) {
+        let x:number = 0; 
             x = Math.floor((Math.random() * alleKarten.length - 1 ));
             
             let prodElement = document.createElement('div');
-            let karte: string= `
-            <p class="${alleKarten[x]}">${alleKarten[x]}</p>
-            `
-            prodElement.innerHTML = karte;
+            
             document.getElementById("Handkarten").appendChild(prodElement);
             
             handkarten.push(alleKarten[x]);
+
+            let karte: string= `
+            <p class="${handkarten[y]}">${handkarten[y]}</p>
+            `
+            prodElement.innerHTML = karte;
             alleKarten.splice(x, 1);
-        }
+        
         }
     }
 
