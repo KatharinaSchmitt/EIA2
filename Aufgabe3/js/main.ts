@@ -11,12 +11,10 @@ let symbol: string;
 let alleKarten: string[] = [];
 
 function erstelleKartenarray(): void {
-
     for (let i: number = 0; i <= 32; i++) {
         if (i < 8) {
             symbol = "Herz" + wert[i];
             alleKarten.push(symbol);
-
         }
         else if (i >= 8 && i < 16) {
             symbol = "Pik" + wert[i % 8];
@@ -25,7 +23,6 @@ function erstelleKartenarray(): void {
         else if (i >= 16 && i < 24) {
             symbol = "Karo" + wert[i % 8];
             alleKarten.push(symbol);
-
         }
         else if (i >= 24 && i < 32) {
             symbol = "Kreuz" + wert[i % 8];
@@ -63,7 +60,6 @@ eingabeAnzahlHandkarten()
 
 //Karten auf Handkarte
 function verteileKarten(_anzahlHandkarten: number): void {
-
     for (let y: number = 0; y < _anzahlHandkarten; y++) {
         let x: number = 0;
         x = Math.floor((Math.random() * alleKarten.length));
@@ -138,7 +134,6 @@ function karteZiehen(): void {
 document.getElementById("Handkarten").addEventListener("click", karteAusspielen);
 function karteAusspielen(): void {
     let kartenID: HTMLElement = <HTMLElement>event.target;
-
     let abgelegt: string[] = [];
     for (let p: number = 0; p < handkarten.length; p++) {
         console.log(kartenID.getAttribute("id"));
@@ -153,7 +148,6 @@ function karteAusspielen(): void {
                 `
             prodElement.innerHTML = karte;
             handkarten.splice(p, 1);
-
         }
     }
 }
