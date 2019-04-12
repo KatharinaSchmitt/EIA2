@@ -45,7 +45,7 @@ function eingabeAnzahlHandkarten() {
     let anzahl = prompt("Anzahl Spielkarten");
     let anzahlHandkarten = parseFloat(anzahl);
     if (isNaN(anzahlHandkarten) == true || anzahlHandkarten < 1 || anzahlHandkarten > 31) {
-        alert("Das ist ein Skatdeck. Es gibt 32 Karten. Was bitte hast du für eine Zahl eingegeben?");
+        alert("Du willst Mau Mau spiele. Da gibt es 32 Karten. Was bitte hast du für eine Zahl eingegeben?");
         eingabeAnzahlHandkarten();
     }
     else {
@@ -122,8 +122,7 @@ function karteAusspielen() {
     let kartenID = event.target;
     let abgelegt = [];
     for (let p = 0; p < handkarten.length; p++) {
-        console.log(kartenID.getAttribute("id"));
-        if (String(kartenID.getAttribute("id")) == handkarten[p]) {
+        if (kartenID.getAttribute("id") == handkarten[p]) {
             abgelegt.push(handkarten[p]);
             let prodElement = document.createElement('div');
             document.getElementById("Ablagestapel").appendChild(prodElement);
@@ -132,6 +131,10 @@ function karteAusspielen() {
                 `;
             prodElement.innerHTML = karte;
             handkarten.splice(p, 1);
+            document.getElementById("Handkarten").innerHTML = ""; // Handkarten leeren, um dann neu zu befüllen
+            for (let i = 0; i < handkarten.length; i++) {
+                kartenDiv(i);
+            }
         }
     }
 }

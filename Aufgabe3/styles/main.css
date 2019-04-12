@@ -45,7 +45,20 @@ body > div {
     background: lightblue;
 }
 
+
+
 #Spielkarten > div {
+    width: 10em;
+    height: 15em;
+    border: 1px solid black; 
+    border-radius: 10%;
+    text-align: center;
+    position: absolute;
+    margin: 2.5%;
+    background-color: white;
+}
+
+#Ablagestapel > div {
     width: 10em;
     height: 15em;
     border: 1px solid black; 
@@ -79,4 +92,11 @@ div [id*="Herz"], div [id*="Karo"] {
 button {
     margin: 1% 5%;
     cursor: pointer;
+}
+
+p {
+    width: 10em;
+    height: 15em;
+    margin: 0;
+    border-radius: 10%;
 }
