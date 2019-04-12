@@ -6,7 +6,7 @@ Datum: <07.04.2019>
 	
 Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und auch nicht diktiert.*/
 
-let anzahl: string;
+/*let anzahl: string;
 
 function eingabeAnzahlHandkarten () : void {
      anzahl = prompt ("Anzahl Spielkarten");
@@ -78,4 +78,4 @@ function zeigeKartenstapel () {
     }
 }
 
-zeigeKartenstapel ()
+zeigeKartenstapel () */
