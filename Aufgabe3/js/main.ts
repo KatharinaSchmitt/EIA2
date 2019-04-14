@@ -7,10 +7,10 @@ Datum: <12.04.2019>
 Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und auch nicht diktiert.*/
 
 let wert: string[] = ["7", "8", "9", "10", "Bube", "Dame", "König", "As"];
-let symbol: string;
 let alleKarten: string[] = [];
 
 function erstelleKartenarray(): void {
+    let symbol: string;
     for (let i: number = 0; i <= 32; i++) {
         if (i < 8) {
             symbol = "Herz" + wert[i];
@@ -66,7 +66,7 @@ function verteileKarten(_anzahlHandkarten: number): void {
         handkarten.push(alleKarten[x]);
         alleKarten.splice(x, 1);
         kartenDiv(y);
-        console.log(handkarten);
+        
     }
 }
 
@@ -88,7 +88,7 @@ document.getElementById("sortieren").addEventListener("click", sortiereKarten);
 function sortiereKarten(): void {
     handkarten.sort();
     document.getElementById("Handkarten").innerHTML = ""; // Handkarten leeren, um dann neu zu befüllen
-    for (let i = 0; i < handkarten.length; i++) {
+    for (let i:number = 0; i < handkarten.length; i++) {
         kartenDiv(i);
     }
 }
@@ -118,14 +118,7 @@ function karteZiehen(): void {
         alleKarten.splice(x, 1);
     }
     else {
-        let prodElement = document.createElement('div');
-        document.getElementById("Spielkarten").appendChild(prodElement);
-
-        let karte: string = `
-                <p></p>
-                `
-        prodElement.innerHTML = karte;
-
+        document.getElementById("Spielkarten").innerHTML = "";
         alert("Kartenstapel leer. Bitte Handkarten ausspielen.");
     }
 }
@@ -135,7 +128,7 @@ document.getElementById("Handkarten").addEventListener("click", karteAusspielen)
 function karteAusspielen(): void {
     let kartenID: HTMLElement = <HTMLElement>event.target;
     let abgelegt: string[] = [];
-    for (let p: number = 0; p < handkarten.length; p++) {
+    for (let p: number = 0; p < handkarten.length ; p++) {
         if (kartenID.getAttribute("id") == handkarten[p]) {
             abgelegt.push(handkarten[p]);
 

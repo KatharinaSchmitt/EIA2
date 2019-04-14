@@ -6,9 +6,9 @@ Datum: <12.04.2019>
     
 Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und auch nicht diktiert.*/
 let wert = ["7", "8", "9", "10", "Bube", "Dame", "König", "As"];
-let symbol;
 let alleKarten = [];
 function erstelleKartenarray() {
+    let symbol;
     for (let i = 0; i <= 32; i++) {
         if (i < 8) {
             symbol = "Herz" + wert[i];
@@ -61,7 +61,6 @@ function verteileKarten(_anzahlHandkarten) {
         handkarten.push(alleKarten[x]);
         alleKarten.splice(x, 1);
         kartenDiv(y);
-        console.log(handkarten);
     }
 }
 //Kartenstapel wird angezeigt
@@ -107,12 +106,7 @@ function karteZiehen() {
         alleKarten.splice(x, 1);
     }
     else {
-        let prodElement = document.createElement('div');
-        document.getElementById("Spielkarten").appendChild(prodElement);
-        let karte = `
-                <p></p>
-                `;
-        prodElement.innerHTML = karte;
+        document.getElementById("Spielkarten").innerHTML = "";
         alert("Kartenstapel leer. Bitte Handkarten ausspielen.");
     }
 }
