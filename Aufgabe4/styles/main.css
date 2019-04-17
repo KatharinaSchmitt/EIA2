@@ -1,0 +1,25 @@
+/*
+Aufgabe: <Aufgabe 4 Eisdealer>
+Name: <Katharina Schmitt>
+Matrikel: <260918>
+Datum: <18.04.2019>
+	
+Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und auch nicht diktiert.*/
+
+html {
+    background-color: lightblue;
+}
+
+h1 {
+    text-align: center;
+}
+
+fieldset {
+    background-color: lightpink;
+    margin: 1%;
+}
+
+legend {
+    background-color: lightskyblue;
+    border: 1px solid black;
+}
