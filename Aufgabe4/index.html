@@ -2,7 +2,7 @@
 Aufgabe: <Aufgabe 4 Eisdealer>
 Name: <Katharina Schmitt>
 Matrikel: <260918>
-Datum: <18.04.2019>
+Datum: <20.04.2019>
 	
 Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und auch nicht diktiert.-->
 
@@ -17,67 +17,83 @@ Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde n
 </head>
 <body>
     <h1>Eisdealer</h1>
+    <aside> 
+        <h2>aktuelle Bestellung</h2>
+        <p>Darstellung</p>
+        <div id="AusgabeDarstellung"></div>
+        <hr/>
+        <p>Eissorte & Topping</p>
+        <div id="AusgabeBestellung"></div>
+        <hr/>
+        <p>Gesamtpreis</p>
+        <div id="AusgabePreis"></div>
+    </aside>
     <fieldset id="Name">
         <legend>Ihr Name</legend>
-        <input type="text" name="Vorname" placeholder="Vorname" required/>
+        <input type="text" name="Vorname" placeholder="Vorname" id="Vorname" required/>
         <br/>
-        <input type="text" name="Nachname" placeholder="Nachname" required/>
+        <input type="text" name="Nachname" placeholder="Nachname" id="Nachname" required/>
         <br/>
     </fieldset>
     <fieldset id="Bestellung">
         <legend>Ihre Bestellung</legend>
+        <div id="Eis"></div>
         <p>Eissorten 0,80€</p>
-        <!--Schokolade
-        <input type="number" name="Stepper" step="1" min="0" max="10" value="0" id="Schokolade"/>
-        Vanille
-        <input type="number" name="Stepper" step="1" min="0" max="10" value="0" id="Vanille"/>
-        Erdbeere
-        <input type="number" name="Stepper" step="1" min="0" max="10" value="0" id="Erdbeere"/>
-        Walnuss
-        <input type="number" name="Stepper" step="1" min="0" max="10" value="0" id="Walnuss"/>
-        Melone
-        <input type="number" name="Stepper" step="1" min="0" max="10" value="0" id="Melone"/>  <-->
-        <input type="checkbox" name="Sorte" value="Schokolade" id="Schokolade"/>
+        <input type="checkbox" name="Sorte" value="Schokolade" id="Schokolade" preis="0.80"/>
         <label for="Schokolade">Schokolade</label>
-        <input type="checkbox" name="Sorte" value="Vanille" id="Vanille"/>
+        <input type="checkbox" name="Sorte" value="Vanille" id="Vanille" preis="0.80"/>
         <label for="Vanille">Vanille</label>
-        <input type="checkbox" name="Sorte" value="Erdbeere" id="Erdbeere"/>
+        <input type="checkbox" name="Sorte" value="Joghurt" id="Joghurt" preis="0.80"/>
+        <label for="Joghurt" >Joghurt</label>
+        <input type="checkbox" name="Sorte" value="Erdbeere" id="Erdbeere" preis="0.80"/>
         <label for="Erdbeere" >Erdbeere</label>
+        <input type="checkbox" name="Sorte" value="Melone" id="Melone" preis="0.80"/>
+        <label for="Melone" >Melone</label>
+        <input type="checkbox" name="Sorte" value="Mango" id="Mango" preis="0.80"/>
+        <label for="Mango" >Mango</label>
+        <input type="checkbox" name="Sorte" value="Zitrone" id="Zitrone" preis="0.80"/>
+        <label for="Zitrone" >Zitrone</label>
+        </div>
         <hr/>
         <p>Toppings 0,20€</p>
-        <input type="checkbox" name="Topping" value="Sahne" id="Sahne"/>
-        <label for="Sahne">Sahne</label>
-        <input type="checkbox" name="Topping" value="Schokosauce" id="Schokosauce"/>
+        <input type="checkbox" name="Topping" value="Sahne" id="Sahne" preis2="0.20"/>
+        <label for="Sahne">Sahne</label> 
+        <br>
+        <input type="checkbox" name="Topping" value="Schokosauce" id="Schokosauce" preis2="0.20"/>
         <label for="Schokosauce" >Schokosauce</label>
-        <input type="checkbox" name="Topping" value="Schokostreusel" id="Schokostreusel"/>
+        <input type="checkbox" name="Topping" value="Erdbeersauce" id="Erdbeersauce" preis2="0.20"/>
+        <label for="Schokosauce" >Erdbeersauce</label>
+        <input type="checkbox" name="Topping" value="Kiwisauce" id="Kiwisauce" preis2="0.20"/>
+        <label for="Kiwisauce" >Kiwisauce</label> 
+        <br>
+        <input type="checkbox" name="Topping" value="Schokostreusel" id="Schokostreusel" preis2="0.20"/>
         <label for="Schokostreusel" >Schokostreusel</label>
+        <input type="checkbox" name="Topping" value="bunteStreusel" id="bunteStreusel" preis2="0.20"/>
+        <label for="bunteStreusel" >bunte Streusel</label>
         <hr/>
+        <div id="Darstellung">
         <p> Darstellungsform </p>
 		<input type="radio" name="Darstellungsform" value="Becher" id="Becher" />
 		<label for="Becher">Becher</label>
 		<input type="radio" name="Darstellungsform" value="Waffel" id="Waffel"/>
         <label for="Waffel">Waffel</label>
+        </div>
+        <hr/>
+        <p>Kugelanzahl</p>
+        <div id="hochzählen"></div>
+        
     </fieldset>
-    <fieldset>
+    <fieldset id="Lieferoptionen">
         <legend>Lieferoptionen</legend>
         <input type="radio" name="Lieferoptionen" value="Abholen" id="Abholen" />
-		<label for="Abholen">selbst abholen (*frei*)</label>
-		<input type="radio" name="Lieferoptionen" value="liefern" id="liefern"/>
-        <label for="liefern">nach Hause liefern (*2€*)</label>
+		<label for="Abholen">selbst abholen</label>
+		<input type="radio" name="Lieferoptionen" value="liefern" id="liefern" preis3="2"/>
+        <label for="liefern">nach Hause liefern</label>
     </fieldset>
     <div id="Adresse">
-        <!--<legend>Lieferadresse</legend>
-        <input type="text" name="Straße" placeholder="Straßenname" required/>
-        <br>
-        <input type="text" name="Nummer" placeholder="Hausnummer" required/>
-        <hr/>
-        <input type="text" name="Postleitzahl" pattern= "[0-9]{5}" placeholder="Postleitzahl" required/>
-        <br>
-        <input type="text" name="Stadt" placeholder="Stadt" required/> <-->
         </div>
-    <div  id="Ausgabe">Warenkorb</div>
-
-    <button id="BestellungÜberprüfen">Bestellung überprüfen</button>
+    
+    <button id="AngabenÜberprüfen">Angaben überprüfen</button>
     <script src="./js/main.js"></script>
 </body>
 </html>

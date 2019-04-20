@@ -2,7 +2,7 @@
 Aufgabe: <Aufgabe 4 Eisdealer>
 Name: <Katharina Schmitt>
 Matrikel: <260918>
-Datum: <18.04.2019>
+Datum: <20.04.2019>
 	
 Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und auch nicht diktiert.*/
 
@@ -16,10 +16,45 @@ h1 {
 
 fieldset {
     background-color: lightpink;
-    margin: 1%;
 }
 
 legend {
     background-color: lightskyblue;
     border: 1px solid black;
 }
+
+#Bestellung > input {
+    margin: 0.5% 0 0.5% 2.5%;
+}
+
+
+button {
+    cursor: pointer;
+}
+
+aside > p {
+    font-style: italic;
+}
+
+ @media screen and (min-width: 1024px) {
+    fieldset {
+        margin: 1% 25% 1% 1%;
+    }
+
+    aside {
+    position: absolute;
+    right: 1%;
+    margin: 1%;
+    text-align: center;
+    border: 1px solid black;
+    width: 20%;
+    
+    background-color: lightgray;
+}
+ aside h2 {
+     margin: 5%;
+     font-size: 1.2rem;
+     font-weight: 700;
+     text-decoration: underline;
+ }
+ }
