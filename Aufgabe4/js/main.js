@@ -19,14 +19,14 @@ var Eisdealer;
     }
     function kugelanzahl(_event) {
         let target = _event.target;
-        if (target.name == "Sorte" && target.checked) {
+        if (target.name == "Sorte" && target.checked == true) {
             let prodStepper = document.createElement("p");
             document.getElementById("hochzählen").appendChild(prodStepper);
-            let ausliefern = `
+            let stepper = `
         ${target.id}
         <input type="number" name="Kugelanzahl" step="1" min="0" max="10" value="0" id="${target.id}" preis="0.80"/>
         `;
-            prodStepper.innerHTML = ausliefern;
+            prodStepper.innerHTML = stepper;
             prodStepper.id = target.id;
             let prodElement = document.createElement("p");
             document.getElementById("AusgabeBestellung").appendChild(prodElement);
@@ -41,9 +41,9 @@ var Eisdealer;
                 }
             }
             let elternDiv = document.getElementById("AusgabeBestellung");
-            for (let i = 0; i < elternDiv.children.length; i++) {
-                if (target.id == elternDiv.children[i].id) {
-                    elternDiv.removeChild(elternDiv.children[i]);
+            for (let b = 0; b < elternDiv.children.length; b++) {
+                if (target.id == elternDiv.children[b].id) {
+                    elternDiv.removeChild(elternDiv.children[b]);
                 }
             }
         }
@@ -95,22 +95,22 @@ var Eisdealer;
             }
         }
         //Kugelpreis berechnen
+        //hier müsste mein Fehler bei der Preisberechnung liegen
         if (target.name == "Kugelanzahl") {
             let elternDiv = document.getElementById("hochzählen");
-            let anzahlKugeln = parseFloat(target.value);
             let preis = target.getAttribute("preis");
             for (let i = 0; i < elternDiv.children.length; i++) {
-                console.log(elternDiv.children[i]);
                 if (target.id == elternDiv.children[i].id) {
-                    summe2 += (Number(preis) * anzahlKugeln);
+                    summe2 += (Number(preis) * Number(target.value));
                 }
             }
         }
         //Gesamtpreis anzeigen
         summe3 += (summe + summe2);
+        let summeGerundet = summe3.toFixed(2);
         let prodElement = document.createElement("div");
         document.getElementById("AusgabePreis").appendChild(prodElement);
-        let preisGanz = `<p> ${summe3} € </p>`;
+        let preisGanz = `<p> ${summeGerundet} € </p>`;
         prodElement.innerHTML = preisGanz;
     }
     function adresse(_event) {

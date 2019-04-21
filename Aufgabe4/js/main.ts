@@ -24,14 +24,14 @@ namespace Eisdealer {
 
     function kugelanzahl(_event: Event) {
         let target: HTMLInputElement = <HTMLInputElement>_event.target;
-        if (target.name == "Sorte" && target.checked) {
+        if (target.name == "Sorte" && target.checked == true) {
             let prodStepper = document.createElement("p");
             document.getElementById("hochzählen").appendChild(prodStepper);
-            let ausliefern: string = `
+            let stepper: string = `
         ${target.id}
         <input type="number" name="Kugelanzahl" step="1" min="0" max="10" value="0" id="${target.id}" preis="0.80"/>
         `
-            prodStepper.innerHTML = ausliefern;
+            prodStepper.innerHTML = stepper;
             prodStepper.id = target.id;
 
             let prodElement: HTMLParagraphElement = document.createElement("p");
@@ -49,9 +49,9 @@ namespace Eisdealer {
                 }
             }
             let elternDiv: HTMLDivElement = <HTMLDivElement>document.getElementById("AusgabeBestellung");
-            for (let i: number = 0; i < elternDiv.children.length; i++) {
-                if (target.id == elternDiv.children[i].id) {
-                    elternDiv.removeChild(elternDiv.children[i]);
+            for (let b: number = 0; b < elternDiv.children.length; b++) {
+                if (target.id == elternDiv.children[b].id) {
+                    elternDiv.removeChild(elternDiv.children[b]);
                 }
             }
         }
@@ -107,22 +107,22 @@ namespace Eisdealer {
             }
         }
         //Kugelpreis berechnen
+        //hier müsste mein Fehler bei der Preisberechnung liegen
         if (target.name == "Kugelanzahl") {
             let elternDiv: HTMLDivElement = <HTMLDivElement>document.getElementById("hochzählen");
-            let anzahlKugeln = parseFloat(target.value);
             let preis: string = target.getAttribute("preis");
             for (let i: number = 0; i < elternDiv.children.length; i++) {
-                console.log(elternDiv.children[i]);
                 if (target.id == elternDiv.children[i].id) {
-                    summe2 += (Number(preis) * anzahlKugeln);
-                }
-            }
+                    summe2 += (Number(preis) * Number(target.value));
+                }   
+            }   
         }
         //Gesamtpreis anzeigen
         summe3 += (summe + summe2);
+        let summeGerundet:string = summe3.toFixed(2);
         let prodElement: HTMLDivElement = document.createElement("div");
         document.getElementById("AusgabePreis").appendChild(prodElement);
-        let preisGanz: string = `<p> ${summe3} € </p>`;
+        let preisGanz: string = `<p> ${summeGerundet} € </p>`;
         prodElement.innerHTML = preisGanz;
     }
 
@@ -193,8 +193,5 @@ namespace Eisdealer {
                 alert("Angaben vollständig.");
             }
         }
-
     }
-
-
 }
