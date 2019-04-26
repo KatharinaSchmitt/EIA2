@@ -54,14 +54,12 @@ namespace Aufgabe5 {
     function bestellungAnzeigen(_event: Event): void {
         let target: HTMLInputElement = <HTMLInputElement>_event.target;
         let input: HTMLCollectionOf<HTMLInputElement> = document.getElementsByTagName("input");
-        document.getElementById("AusgabePreis").innerHTML = "";
         if (target.name == "Darstellungsform") {
             document.getElementById("AusgabeDarstellung").innerHTML = "";
             let prodElement: HTMLParagraphElement = document.createElement("p");
             document.getElementById("AusgabeDarstellung").appendChild(prodElement);
             prodElement.innerHTML = target.value;
         }
-
         if (target.type == "checkbox") {
             document.getElementById("AusgabeToppings").innerHTML = "";
             for (let i: number = 0; i < input.length; i++) {
@@ -72,7 +70,6 @@ namespace Aufgabe5 {
                 }
             }
         }
-
         if (target.type == "number") {
             document.getElementById("AusgabeEissorten").innerHTML = "";
             for (let i: number = 0; i < input.length; i++) {
@@ -86,18 +83,18 @@ namespace Aufgabe5 {
     }
 
     function gesamtpreis(_event: Event):void {
-        let target: HTMLInputElement = <HTMLInputElement>_event.target;
         let input: HTMLCollectionOf<HTMLInputElement> = document.getElementsByTagName("input");
         let preisGesamt: number = 0;
         document.getElementById("AusgabePreis").innerHTML = "";
 
         for (let i: number = 0; i < input.length; i++) {
             if (input[i].type == "number") {
-                let preis: string = target.getAttribute("preis");
+                let preis: string = input[i].getAttribute("preis");
                 preisGesamt += (Number(preis) * Number(input[i].value));
             }
             if (input[i].type == "checkbox" && input[i].checked == true) {
-                let preis: string = target.getAttribute("preis");
+                let preis: string = input[i].getAttribute("preis");
+
                 preisGesamt += Number(preis);
             }
         }
@@ -108,8 +105,6 @@ namespace Aufgabe5 {
         let preisGanz: string = `<p> ${summeGerundet} € </p>`;
         prodElement.innerHTML = preisGanz;
     }
-
-
 
     //aus Aufgabe 4 übernommen
     function adresse(_event: Event):void {

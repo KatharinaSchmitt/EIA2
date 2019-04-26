@@ -47,7 +47,6 @@ var Aufgabe5;
     function bestellungAnzeigen(_event) {
         let target = _event.target;
         let input = document.getElementsByTagName("input");
-        document.getElementById("AusgabePreis").innerHTML = "";
         if (target.name == "Darstellungsform") {
             document.getElementById("AusgabeDarstellung").innerHTML = "";
             let prodElement = document.createElement("p");
@@ -76,17 +75,16 @@ var Aufgabe5;
         }
     }
     function gesamtpreis(_event) {
-        let target = _event.target;
         let input = document.getElementsByTagName("input");
         let preisGesamt = 0;
         document.getElementById("AusgabePreis").innerHTML = "";
         for (let i = 0; i < input.length; i++) {
             if (input[i].type == "number") {
-                let preis = target.getAttribute("preis");
+                let preis = input[i].getAttribute("preis");
                 preisGesamt += (Number(preis) * Number(input[i].value));
             }
             if (input[i].type == "checkbox" && input[i].checked == true) {
-                let preis = target.getAttribute("preis");
+                let preis = input[i].getAttribute("preis");
                 preisGesamt += Number(preis);
             }
         }
