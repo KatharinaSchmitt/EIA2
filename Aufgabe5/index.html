@@ -1,0 +1,65 @@
+<!--
+Aufgabe: <Aufgabe 5 Eisdealer>
+Name: <Katharina Schmitt>
+Matrikel: <260918>
+Datum: <26.04.2019>
+	
+Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und auch nicht diktiert.-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="./styles/main.css">
+    <title>Eisdealer</title>
+</head>
+<body>
+    <h1>Eisdealer</h1>
+    <aside> 
+        <h2>aktuelle Bestellung</h2>
+        <p>Darstellung</p>
+        <div id="AusgabeDarstellung"></div>
+        <hr/>
+        <p>Eissorten</p>
+        <div id="AusgabeEissorten"></div>
+        <hr/>
+        <p>Toppings</p>
+        <div id="AusgabeToppings"></div>
+        <hr/>
+        <p>Gesamtpreis</p>
+        <div id="AusgabePreis"></div>
+    </aside>
+    <fieldset id="Name">
+        <legend>Ihr Name</legend>
+        <input type="text" name="Vorname" placeholder="Vorname" id="Vorname" required/>
+        <br/>
+        <input type="text" name="Nachname" placeholder="Nachname" id="Nachname" required/>
+        <br/>
+    </fieldset>
+    <fieldset id="Darstellung">
+        <legend>Darstellungsform</legend>
+		<input type="radio" name="Darstellungsform" value="Becher" id="Becher" />
+		<label for="Becher">Becher</label>
+		<input type="radio" name="Darstellungsform" value="Waffel" id="Waffel"/>
+        <label for="Waffel">Waffel</label>
+    </fieldset>
+    <fieldset id="Auswahl">
+        <legend>Ihre Bestellung</legend>
+    </fieldset>
+    <fieldset id="Lieferoptionen">
+        <legend>Lieferoptionen</legend>
+        <input type="radio" name="Lieferoptionen" value="Abholen" id="Abholen" />
+		<label for="Abholen">selbst abholen</label>
+		<input type="radio" name="Lieferoptionen" value="liefern" id="liefern" preis3="2"/>
+        <label for="liefern">nach Hause liefern</label>
+    </fieldset>
+    <div id="Adresse">
+        </div>
+    
+    <button id="AngabenÜberprüfen">Angaben überprüfen</button>
+    <script src="./js/data.js"></script>
+    <script src="./js/main.js"></script>
+</body>
+</html>
