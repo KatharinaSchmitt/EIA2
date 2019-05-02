@@ -17,7 +17,7 @@ namespace L05_Server {
 
 	function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerResponse): void { //_request (als Variable) wird einkommende Nachricht, _response wird Antwort des Servers (von Server automatisch erzeugt)
 		console.log("I hear voices!"); //"I hear voices!" wird in der Konsole angezeigt
-
+		console.log(_request.url);
 		_response.setHeader("content-type", "text/html; charset=utf-8"); //fügt zu _response header hinzu
 		_response.setHeader("Access-Control-Allow-Origin", "*"); //fügt zu header von _response hinzu, dass die Ressource für andere Codes zugänglich wird 
 
@@ -25,4 +25,5 @@ namespace L05_Server {
 
 		_response.end(); //_response wird geschlossen; singnalisiert dem  Server, _response an den Client zu schicken
 	}
+
 }
