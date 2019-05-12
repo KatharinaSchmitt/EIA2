@@ -17,9 +17,7 @@ namespace Aufgabe7 {
 
 		let url: Url.UrlWithParsedQuery = Url.parse(_request.url, true);
 		for (let key in url.query) {
-			console.log(key);
-			console.log(url.query[key]);
-			_response.write(key + url.query[key] + "<br/>");
+			_response.write("<p>" + key + url.query[key] + "</p>");
 		}
 		_response.end();
 	}
