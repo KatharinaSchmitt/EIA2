@@ -1,0 +1,64 @@
+/*
+Aufgabe: <Aufgabe 5 Eisdealer>
+Name: <Katharina Schmitt>
+Matrikel: <260918>
+Datum: <26.04.2019>
+	
+Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und auch nicht diktiert.*/
+
+html {
+    background-color: lightblue;
+}
+
+h1 {
+    text-align: center;
+}
+
+fieldset {
+    background-color: lightpink;
+}
+
+legend {
+    background-color: lightskyblue;
+    border: 1px solid black;
+}
+
+#Bestellung > input {
+    margin: 0.5% 0 0.5% 2.5%;
+}
+
+
+button {
+    cursor: pointer;
+}
+
+aside > p {
+    font-style: italic;
+}
+
+#Auswahl p {
+    font-style: italic;
+}
+
+ @media screen and (min-width: 1024px) {
+    fieldset {
+        margin: 1% 25% 1% 1%;
+    }
+
+    aside {
+    position: absolute;
+    right: 1%;
+    margin: 1%;
+    text-align: center;
+    border: 1px solid black;
+    width: 20%;
+    
+    background-color: lightgray;
+}
+ aside h2 {
+     margin: 5%;
+     font-size: 1.2rem;
+     font-weight: 700;
+     text-decoration: underline;
+ }
+}
