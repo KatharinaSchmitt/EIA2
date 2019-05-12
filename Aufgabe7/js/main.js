@@ -9,6 +9,7 @@ var Aufgabe7;
 (function (Aufgabe7) {
     window.addEventListener("load", init);
     let serverAdresse = "http://localhost:8100/?";
+    //let serverAdresse: string = "https://eia2-katharina-schmitt.herokuapp.com/?"
     function init(_event) {
         produktarrayDarstellen(Aufgabe7.data);
         let fieldsets = document.getElementsByTagName("fieldset");
@@ -177,6 +178,9 @@ var Aufgabe7;
         let input = document.getElementsByTagName("input");
         let anzeigen = "";
         for (let i = 0; i < input.length; i++) {
+            if (input[i].type == "text") {
+                anzeigen += input[i].name + input[i].value;
+            }
             if (input[i].value != "0" && (input[i].type == "number" || input[i].type == "checkbox")) {
                 anzeigen += input[i].name + input[i].value;
             }
