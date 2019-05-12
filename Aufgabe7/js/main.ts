@@ -10,7 +10,7 @@ Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde n
 namespace Aufgabe7 {
 
     window.addEventListener("load", init);
-    
+
     //let serverAdresse: string = "http://localhost:8100/?";
     let serverAdresse: string = "https://eia2-katharina-schmitt.herokuapp.com/?";
 
@@ -184,7 +184,7 @@ namespace Aufgabe7 {
     }
 
 
-    function valueRichtig() {
+    function valueRichtig(): void {
         let input: HTMLCollectionOf<HTMLInputElement> = document.getElementsByTagName("input");
         for (let i: number = 0; i < input.length; i++) {
             if (input[i].type == "checkbox" && input[i].checked == true) {
@@ -193,24 +193,24 @@ namespace Aufgabe7 {
         }
     }
 
-    function bestellungWeitergeben() {
+    function bestellungWeitergeben(): void {
         let input: HTMLCollectionOf<HTMLInputElement> = document.getElementsByTagName("input");
         let anzeigen: string = "";
         for (let i: number = 0; i < input.length; i++) {
-            if (input[i].type == "text"){
+            if (input[i].type == "text") {
                 anzeigen += input[i].name + ": " + input[i].value + "&";
             }
             if (input[i].value != "0" && (input[i].type == "number" || input[i].type == "checkbox")) {
                 anzeigen += input[i].name + " " + input[i].value + "x" + "&";
             }
-            if (input[i].type == "radio" && input[i].checked == true){
+            if (input[i].type == "radio" && input[i].checked == true) {
                 anzeigen += input[i].name + ": " + input[i].value + "&";
             }
-        } 
+        }
         bestellungAbschicken(anzeigen);
     }
 
-    function bestellungAbschicken(_anzeigen: string) {
+    function bestellungAbschicken(_anzeigen: string): void {
         let xhr: XMLHttpRequest = new XMLHttpRequest();
         xhr.open("GET", serverAdresse + _anzeigen, true);
         xhr.addEventListener("readystatechange", abgeschickteBestellung);
@@ -221,7 +221,7 @@ namespace Aufgabe7 {
         let xhr: XMLHttpRequest = <XMLHttpRequest>_event.target;
         if (xhr.readyState == XMLHttpRequest.DONE) {
             document.getElementById("Abgeschickt").innerHTML = "";
-            let prodElement = document.createElement('div');
+            let prodElement: HTMLDivElement = document.createElement('div');
             let fertigeBestellung: string = `
             <p>Ihre Bestellung wurde erfolgreich abgeschickt.</p>
             <p>${xhr.response}</p>`;
