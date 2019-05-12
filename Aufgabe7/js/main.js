@@ -8,8 +8,8 @@ Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde n
 var Aufgabe7;
 (function (Aufgabe7) {
     window.addEventListener("load", init);
-    let serverAdresse = "http://localhost:8100/?";
-    //let serverAdresse: string = "https://eia2-katharina-schmitt.herokuapp.com/?"
+    //let serverAdresse: string = "http://localhost:8100/?";
+    let serverAdresse = "https://eia2-katharina-schmitt.herokuapp.com/?";
     function init(_event) {
         produktarrayDarstellen(Aufgabe7.data);
         let fieldsets = document.getElementsByTagName("fieldset");
