@@ -196,7 +196,7 @@ namespace Aufgabe7 {
         let input: HTMLCollectionOf<HTMLInputElement> = document.getElementsByTagName("input");
         let anzeigen: string = "";
         for (let i: number = 0; i < input.length; i++) {
-            if (input[i].value != "0" && (input[i].type == "number" || input[i].type == "checkbox")) {
+            if (input[i].value != "0" && (input[i].type == "number" || input[i].type == "checkbox" || input[i].type == "text")) {
                 anzeigen += input[i].name + input[i].value;
             }
             if (input[i].type == "radio" && input[i].checked == true){
