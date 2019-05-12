@@ -220,11 +220,15 @@ namespace Aufgabe7 {
     function handleStateChange(_event: ProgressEvent): void {
         let xhr: XMLHttpRequest = <XMLHttpRequest>_event.target;
         if (xhr.readyState == XMLHttpRequest.DONE) {
-
-            let fertigeBestellung: HTMLElement;
             document.getElementById("Abgeschickt").innerHTML = "";
-            fertigeBestellung = document.getElementById("Abgeschickt");
-            fertigeBestellung.innerHTML += xhr.response;
+            let prodElement = document.createElement('div');
+            let fertigeBestellung: string = `
+            <p>Ihre Bestellung wurde erfolgreich abgeschickt.</p>
+            <p>${xhr.response}</p>
+            `;
+            prodElement.innerHTML = fertigeBestellung;
+            document.getElementById("Abgeschickt").appendChild(prodElement);
+            //fertigeBestellung.innerHTML += xhr.response;
 
 
             document.getElementById("AusgabeDarstellung").innerHTML = "";

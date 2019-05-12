@@ -199,10 +199,15 @@ var Aufgabe7;
     function handleStateChange(_event) {
         let xhr = _event.target;
         if (xhr.readyState == XMLHttpRequest.DONE) {
-            let fertigeBestellung;
             document.getElementById("Abgeschickt").innerHTML = "";
-            fertigeBestellung = document.getElementById("Abgeschickt");
-            fertigeBestellung.innerHTML += xhr.response;
+            let prodElement = document.createElement('div');
+            let fertigeBestellung = `
+            <p>Ihre Bestellung wurde erfolgreich abgeschickt.</p>
+            <p>${xhr.response}</p>
+            `;
+            prodElement.innerHTML = fertigeBestellung;
+            document.getElementById("Abgeschickt").appendChild(prodElement);
+            //fertigeBestellung.innerHTML += xhr.response;
             document.getElementById("AusgabeDarstellung").innerHTML = "";
             document.getElementById("AusgabeEissorten").innerHTML = "";
             document.getElementById("AusgabeToppings").innerHTML = "";
