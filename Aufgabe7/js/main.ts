@@ -213,23 +213,20 @@ namespace Aufgabe7 {
     function bestellungAbschicken(_anzeigen: string) {
         let xhr: XMLHttpRequest = new XMLHttpRequest();
         xhr.open("GET", serverAdresse + _anzeigen, true);
-        xhr.addEventListener("readystatechange", handleStateChange);
+        xhr.addEventListener("readystatechange", abgeschickteBestellung);
         xhr.send();
     }
 
-    function handleStateChange(_event: ProgressEvent): void {
+    function abgeschickteBestellung(_event: ProgressEvent): void {
         let xhr: XMLHttpRequest = <XMLHttpRequest>_event.target;
         if (xhr.readyState == XMLHttpRequest.DONE) {
             document.getElementById("Abgeschickt").innerHTML = "";
             let prodElement = document.createElement('div');
             let fertigeBestellung: string = `
             <p>Ihre Bestellung wurde erfolgreich abgeschickt.</p>
-            <p>${xhr.response}</p>
-            `;
+            <p>${xhr.response}</p>`;
             prodElement.innerHTML = fertigeBestellung;
             document.getElementById("Abgeschickt").appendChild(prodElement);
-            //fertigeBestellung.innerHTML += xhr.response;
-
 
             document.getElementById("AusgabeDarstellung").innerHTML = "";
             document.getElementById("AusgabeEissorten").innerHTML = "";

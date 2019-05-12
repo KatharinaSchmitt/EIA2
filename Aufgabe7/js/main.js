@@ -193,21 +193,19 @@ var Aufgabe7;
     function bestellungAbschicken(_anzeigen) {
         let xhr = new XMLHttpRequest();
         xhr.open("GET", serverAdresse + _anzeigen, true);
-        xhr.addEventListener("readystatechange", handleStateChange);
+        xhr.addEventListener("readystatechange", abgeschickteBestellung);
         xhr.send();
     }
-    function handleStateChange(_event) {
+    function abgeschickteBestellung(_event) {
         let xhr = _event.target;
         if (xhr.readyState == XMLHttpRequest.DONE) {
             document.getElementById("Abgeschickt").innerHTML = "";
             let prodElement = document.createElement('div');
             let fertigeBestellung = `
             <p>Ihre Bestellung wurde erfolgreich abgeschickt.</p>
-            <p>${xhr.response}</p>
-            `;
+            <p>${xhr.response}</p>`;
             prodElement.innerHTML = fertigeBestellung;
             document.getElementById("Abgeschickt").appendChild(prodElement);
-            //fertigeBestellung.innerHTML += xhr.response;
             document.getElementById("AusgabeDarstellung").innerHTML = "";
             document.getElementById("AusgabeEissorten").innerHTML = "";
             document.getElementById("AusgabeToppings").innerHTML = "";
