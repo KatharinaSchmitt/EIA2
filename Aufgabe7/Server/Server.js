@@ -15,7 +15,7 @@ var Aufgabe7;
         _response.setHeader("Access-Control-Allow-Origin", "*");
         let url = Url.parse(_request.url, true);
         for (let key in url.query)
-            _response.write(key + ":" + url.query[key] + "<br/>");
+            _response.write(key + url.query[key] + "<br/>");
         _response.end();
     }
 })(Aufgabe7 || (Aufgabe7 = {}));
