@@ -16,9 +16,11 @@ namespace Aufgabe7 {
 		_response.setHeader("Access-Control-Allow-Origin", "*");
 
 		let url: Url.UrlWithParsedQuery = Url.parse(_request.url, true);
-		for (let key in url.query)
+		for (let key in url.query) {
+			console.log(key);
+			console.log(url.query[key]);
 			_response.write(key + url.query[key] + "<br/>");
-
+		}
 		_response.end();
 	}
 }
