@@ -179,13 +179,13 @@ var Aufgabe7;
         let anzeigen = "";
         for (let i = 0; i < input.length; i++) {
             if (input[i].type == "text") {
-                anzeigen += input[i].name + ": " + input[i].value + "&";
+                anzeigen += input[i].name + "=" + input[i].value + "&";
             }
             if (input[i].value != "0" && (input[i].type == "number" || input[i].type == "checkbox")) {
-                anzeigen += input[i].name + " " + input[i].value + "x" + "&";
+                anzeigen += input[i].name + "=" + input[i].value + "&";
             }
             if (input[i].type == "radio" && input[i].checked == true) {
-                anzeigen += input[i].name + ": " + input[i].value + "&";
+                anzeigen += input[i].name + "=" + input[i].value + "&";
             }
         }
         bestellungAbschicken(anzeigen);
