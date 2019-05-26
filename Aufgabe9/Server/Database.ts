@@ -62,7 +62,6 @@ export function findAll(_callback: Function): void {
 }
 
 export function suchen(_callback: Function, _gesNum: string): void {
-    alert("Hilfe");
     let gesNum: number = Number(_gesNum);
     students.find({ "matrikel": gesNum }).toArray(prepareAnswer);
     function prepareAnswer(_e: Mongo.MongoError, studentArray: StudentData[]): void {
