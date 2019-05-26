@@ -15,7 +15,8 @@ var DBClient;
     function sucheNummer(_event) {
         let input = document.getElementsByTagName("input");
         let query = "command=search";
-        query += "&gesNum" + input[3].value;
+        query += "&gesNum=" + input[3].value;
+        console.log(query);
         sendRequest(query, handleFindResponse);
     }
     function insert(_event) {

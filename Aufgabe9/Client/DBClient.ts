@@ -16,7 +16,8 @@ namespace DBClient {
     function sucheNummer (_event:Event): void {
         let input: HTMLCollectionOf<HTMLInputElement> = document.getElementsByTagName("input");
         let query: string = "command=search";
-        query += "&gesNum" + input[3].value;
+        query += "&gesNum=" + input[3].value;
+        console.log(query);
         sendRequest(query, handleFindResponse)
     }
 
