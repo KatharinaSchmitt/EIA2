@@ -13,6 +13,7 @@ var DBClient;
         sendeButton.addEventListener("click", sucheNummer);
     }
     function sucheNummer(_event) {
+        alert("Hilfe");
         let input = document.getElementsByTagName("input");
         let query = "command=search";
         query += "&gesNum" + input[3].value;
