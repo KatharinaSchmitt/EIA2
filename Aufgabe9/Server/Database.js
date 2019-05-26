@@ -56,7 +56,8 @@ function findAll(_callback) {
 }
 exports.findAll = findAll;
 function suchen(_callback, _gesNum) {
-    students.find({ "matrikel": Number(_gesNum) }).toArray(prepareAnswer);
+    let gesNum = Number(_gesNum);
+    students.find({ "matrikel": gesNum }).toArray(prepareAnswer);
     function prepareAnswer(_e, studentArray) {
         if (_e)
             _callback("Error" + _e);
