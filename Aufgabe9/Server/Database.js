@@ -8,14 +8,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const Mongo = require("mongodb");
 console.log("Database starting");
 let databaseURL = "mongodb://localhost:27017";
-let databaseName = "Test";
+let databaseName = "test";
 let db;
 let students;
 // running on heroku?
 if (process.env.NODE_ENV == "production") {
-    // databaseURL = "mongodb+srv://username:password@hostname:port/database";
-    databaseURL = "mongodb+srv://testuser:testpassword@eia2-57vpd.mongodb.net/eia2";
-    databaseName = "eia2";
+    //databaseURL = "mongodb+srv://username:password@hostname:port/database";
+    databaseURL = "mongodb+srv://Katharina:schmitt@eia2db-aru8k.mongodb.net/EIA2db";
+    databaseName = "EIA2db";
 }
 // try to connect to database, then activate callback "handleConnect" 
 Mongo.MongoClient.connect(databaseURL, { connectTimeoutMS: 8000 }, handleConnect);
@@ -55,4 +55,14 @@ function findAll(_callback) {
     }
 }
 exports.findAll = findAll;
+function suchen(_callback, _gesNum) {
+    students.find({ "matrikel": Number(_gesNum) }).toArray(prepareAnswer);
+    function prepareAnswer(_e, studentArray) {
+        if (_e)
+            _callback("Error" + _e);
+        else
+            _callback(JSON.stringify(studentArray));
+    }
+}
+exports.suchen = suchen;
 //# sourceMappingURL=Database.js.map

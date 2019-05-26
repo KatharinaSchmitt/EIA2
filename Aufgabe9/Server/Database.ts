@@ -8,15 +8,15 @@ import * as Mongo from "mongodb";
 console.log("Database starting");
 
 let databaseURL: string = "mongodb://localhost:27017";
-let databaseName: string = "Test";
+let databaseName: string = "test";
 let db: Mongo.Db;
 let students: Mongo.Collection;
 
 // running on heroku?
 if (process.env.NODE_ENV == "production") {
-    // databaseURL = "mongodb+srv://username:password@hostname:port/database";
-    databaseURL = "mongodb+srv://testuser:testpassword@eia2-57vpd.mongodb.net/eia2";
-    databaseName = "eia2";
+    //databaseURL = "mongodb+srv://username:password@hostname:port/database";
+    databaseURL = "mongodb+srv://Katharina:schmitt@eia2db-aru8k.mongodb.net/EIA2db";
+    databaseName = "EIA2db";
 }
 
 // try to connect to database, then activate callback "handleConnect" 
@@ -60,3 +60,13 @@ export function findAll(_callback: Function): void {
             _callback(JSON.stringify(studentArray));
     }
 }
+
+export function suchen (_callback: Function, _gesNum: string):void {
+    students.find({"matrikel": Number(_gesNum)}).toArray(prepareAnswer);
+    function prepareAnswer(_e: Mongo.MongoError, studentArray: StudentData[]): void {
+        if (_e)
+            _callback("Error" + _e);
+        else
+            _callback(JSON.stringify(studentArray));
+    }
+    }

@@ -44,6 +44,10 @@ function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerRes
         case "refresh":
             Database.findAll(findCallback);
             break;
+        case "search":
+            let gesNum: string = query["gesNum"];
+            Database.suchen(findCallback, gesNum);
+            break
         default:
             respond(_response, "unknown command: " + command);
             break;

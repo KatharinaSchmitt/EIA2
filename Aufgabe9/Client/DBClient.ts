@@ -1,14 +1,23 @@
 namespace DBClient {
     window.addEventListener("load", init);
-    let serverAddress: string = "http://localhost:8100/";
-    // let serverAddress: string = "https://eia2-testserver.herokuapp.com/";
+    //let serverAddress: string = "http://localhost:8100/";
+    let serverAddress: string = "https://eia2-katharina-schmitt.herokuapp.com/";
 
     function init(_event: Event): void {
         console.log("Init");
         let insertButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("insert");
         let refreshButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("refresh");
+        let sendeButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("suchen");
         insertButton.addEventListener("click", insert);
         refreshButton.addEventListener("click", refresh);
+        sendeButton.addEventListener("click", sucheNummer);
+    }
+
+    function sucheNummer (_event:Event): void {
+        let input: HTMLCollectionOf<HTMLInputElement> = document.getElementsByTagName("input");
+        let query: string = "command=search";
+        query += "&gesNum" + input[3].value;
+        sendRequest(query, handleFindResponse)
     }
 
     function insert(_event: Event): void {

@@ -36,6 +36,10 @@ function handleRequest(_request, _response) {
         case "refresh":
             Database.findAll(findCallback);
             break;
+        case "search":
+            let gesNum = query["gesNum"];
+            Database.suchen(findCallback, gesNum);
+            break;
         default:
             respond(_response, "unknown command: " + command);
             break;

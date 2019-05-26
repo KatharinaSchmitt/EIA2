@@ -1,16 +1,19 @@
 {
 	"name": "miniserver",
 	"version": "1.0.0",
-	"description": "Aufgabe 7",
+	"description": "Aufgabe 9",
 	"author": "Katharina Schmitt",
 	"main": "Server.js",
 	"scripts": {
-		"start": "node Aufgabe7/Server/Server.js"
+		"start": "node Aufgabe9/Server/Server.js"
 	},
 	"engines": {
 		"node": "8.11.3"
 	},
 	"dependencies": {
-		"@types/node": "^11.13.8"
+		"@types/mongodb": "^3.1.27",
+		"@types/node": "^11.13.8",
+		"mongod" : "^2.0.0",
+		"mongodb": "^3.2.6"
 	}
 }

@@ -1,14 +1,22 @@
 var DBClient;
 (function (DBClient) {
     window.addEventListener("load", init);
-    let serverAddress = "http://localhost:8100/";
-    // let serverAddress: string = "https://eia2-testserver.herokuapp.com/";
+    //let serverAddress: string = "http://localhost:8100/";
+    let serverAddress = "https://eia2-katharina-schmitt.herokuapp.com/";
     function init(_event) {
         console.log("Init");
         let insertButton = document.getElementById("insert");
         let refreshButton = document.getElementById("refresh");
+        let sendeButton = document.getElementById("suchen");
         insertButton.addEventListener("click", insert);
         refreshButton.addEventListener("click", refresh);
+        sendeButton.addEventListener("click", sucheNummer);
+    }
+    function sucheNummer(_event) {
+        let input = document.getElementsByTagName("input");
+        let query = "command=search";
+        query += "&gesNum" + input[3].value;
+        sendRequest(query, handleFindResponse);
     }
     function insert(_event) {
         let inputs = document.getElementsByTagName("input");
