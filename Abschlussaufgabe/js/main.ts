@@ -28,6 +28,7 @@ namespace Abschlussaufgabe {
         canvas = document.getElementsByTagName("canvas")[0];
         crc = canvas.getContext("2d");
         hintergrund();
+        refresh();
     }
 
     function init(_event: Event): void {
@@ -155,12 +156,12 @@ namespace Abschlussaufgabe {
     function punktezahl(): void { //Highscore anzeigen
         document.getElementById("Punktezahl").innerHTML = "";
         let div: HTMLDivElement = document.createElement("div");
-        div.innerHTML = `<p>${punkteanzahl}</p>`;
+        div.innerHTML = `<p>Highscore ${punkteanzahl}</p>`;
         document.getElementById("Punktezahl").appendChild(div);
         document.getElementById("Größe").innerHTML = "";
         let div2: HTMLDivElement = document.createElement("div");
         let w: string = spielerfisch.w.toFixed(2);
-        div2.innerHTML = `<p>${w}</p>`;
+        div2.innerHTML = `<p>Größe ${w}</p>`;
         document.getElementById("Größe").appendChild(div2);
     }
 

@@ -36,23 +36,17 @@ function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerRes
         case "refresh":
             Database.findAll(findCallback);
             break;
-        /*case "search":
-            let gesNum: string = query["gesNum"];
-            Database.suchen(findCallback, gesNum);
-            break*/
         default:
             respond(_response, "unknown command: " + command);
             break;
     }
 
-    // findCallback is an inner function so that _response is in scope
     function findCallback(json: string): void {
         respond(_response, json);
     }
 }
 
 function respond(_response: Http.ServerResponse, _text: string): void {
-    //console.log("Preparing response: " + _text);
     _response.setHeader("Access-Control-Allow-Origin", "*");
     _response.setHeader("content-type", "text/html; charset=utf-8");
     _response.write(_text);

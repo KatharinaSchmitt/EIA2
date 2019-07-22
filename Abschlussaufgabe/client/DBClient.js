@@ -7,7 +7,6 @@ var Abschlussaufgabe;
         query += "&name=" + Abschlussaufgabe.nameSpieler;
         query += "&highscore=" + Abschlussaufgabe.punkteanzahl;
         sendRequest(query, handleInsertResponse);
-        console.log(query);
     }
     Abschlussaufgabe.highscoreAbschicken = highscoreAbschicken;
     function refresh() {
@@ -30,11 +29,28 @@ var Abschlussaufgabe;
     function handleFindResponse(_event) {
         let xhr = _event.target;
         if (xhr.readyState == XMLHttpRequest.DONE) {
-            let output = document.getElementsByTagName("textarea")[0];
-            output.value = xhr.response;
-            let responseAsJson = JSON.parse(xhr.response);
-            console.log(responseAsJson);
+            let alleSpielerArray = JSON.parse(xhr.response);
+            for (let i = 0; i < alleSpielerArray.length; i++) {
+                alleSpielerArray.sort(scoreVergleichen);
+            }
+            console.log(alleSpielerArray);
+            for (let i = 0; i < 5; i++) {
+                let div = document.createElement("div");
+                div.innerHTML = `<p>${alleSpielerArray[i].name + alleSpielerArray[i].highscore}</p>`;
+                document.getElementById("Bestenliste").appendChild(div);
+            }
         }
+    }
+    function scoreVergleichen(a, b) {
+        let scoreA = a.highscore;
+        let scoreB = b.highscore;
+        if (scoreA < scoreB) {
+            return 1;
+        }
+        if (scoreA > scoreB) {
+            return -1;
+        }
+        return 0;
     }
 })(Abschlussaufgabe || (Abschlussaufgabe = {}));
 //# sourceMappingURL=DBClient.js.map

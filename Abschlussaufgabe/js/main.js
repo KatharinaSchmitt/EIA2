@@ -24,6 +24,7 @@ var Abschlussaufgabe;
         Abschlussaufgabe.canvas = document.getElementsByTagName("canvas")[0];
         Abschlussaufgabe.crc = Abschlussaufgabe.canvas.getContext("2d");
         hintergrund();
+        Abschlussaufgabe.refresh();
     }
     function init(_event) {
         document.addEventListener("keydown", steuerungFisch);
@@ -139,12 +140,12 @@ var Abschlussaufgabe;
     function punktezahl() {
         document.getElementById("Punktezahl").innerHTML = "";
         let div = document.createElement("div");
-        div.innerHTML = `<p>${Abschlussaufgabe.punkteanzahl}</p>`;
+        div.innerHTML = `<p>Highscore ${Abschlussaufgabe.punkteanzahl}</p>`;
         document.getElementById("Punktezahl").appendChild(div);
         document.getElementById("Größe").innerHTML = "";
         let div2 = document.createElement("div");
         let w = spielerfisch.w.toFixed(2);
-        div2.innerHTML = `<p>${w}</p>`;
+        div2.innerHTML = `<p>Größe ${w}</p>`;
         document.getElementById("Größe").appendChild(div2);
     }
     //fressen + wachsen des Spielerfisches + Punkteanzahl erhöhen + gefressene Fische wieder neu erstellen

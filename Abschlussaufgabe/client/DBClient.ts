@@ -7,7 +7,6 @@ namespace Abschlussaufgabe {
         query += "&name=" + nameSpieler;
         query += "&highscore=" + punkteanzahl;
         sendRequest(query, handleInsertResponse);
-        console.log(query);
     }
 
     export function refresh(): void {
@@ -32,10 +31,28 @@ namespace Abschlussaufgabe {
     function handleFindResponse(_event: ProgressEvent): void {
         let xhr: XMLHttpRequest = (<XMLHttpRequest>_event.target);
         if (xhr.readyState == XMLHttpRequest.DONE) {
-            let output: HTMLTextAreaElement = document.getElementsByTagName("textarea")[0];
-            output.value = xhr.response;
-            let responseAsJson: JSON = JSON.parse(xhr.response);
-            console.log(responseAsJson);
+            let alleSpielerArray: SpielerDaten[] = JSON.parse(xhr.response);
+            for (let i: number = 0; i < alleSpielerArray.length; i++) {
+                alleSpielerArray.sort(scoreVergleichen);
+            }
+            console.log(alleSpielerArray);
+            for (let i: number = 0; i < 5; i++) {
+                let div: HTMLDivElement = document.createElement("div");
+                div.innerHTML = `<p>${alleSpielerArray[i].name + alleSpielerArray[i].highscore}</p>`;
+                document.getElementById("Bestenliste").appendChild(div);
+            }
         }
+    }
+
+    function scoreVergleichen(a: SpielerDaten, b: SpielerDaten): number {
+        let scoreA: number = a.highscore;
+        let scoreB: number = b.highscore;
+        if (scoreA < scoreB) {
+            return 1;
+        }
+        if (scoreA > scoreB) {
+            return -1;
+        }
+        return 0;
     }
 }
