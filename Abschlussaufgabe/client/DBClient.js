@@ -10,10 +10,11 @@ var Abschlussaufgabe;
         console.log(query);
     }
     Abschlussaufgabe.highscoreAbschicken = highscoreAbschicken;
-    function refresh(_event) {
+    function refresh() {
         let query = "command=refresh";
         sendRequest(query, handleFindResponse);
     }
+    Abschlussaufgabe.refresh = refresh;
     function sendRequest(_query, _callback) {
         let xhr = new XMLHttpRequest();
         xhr.open("GET", serverAddress + "?" + _query, true);

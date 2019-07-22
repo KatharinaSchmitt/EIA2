@@ -69,10 +69,10 @@ var Abschlussaufgabe;
     }
     function gameOver() {
         window.clearTimeout(timeout);
-        Abschlussaufgabe.nameSpieler = prompt("Dein Highscore: " + Abschlussaufgabe.punkteanzahl + "Bitte gib deinen Namen ein:");
-        if (Abschlussaufgabe.nameSpieler != null) {
-            Abschlussaufgabe.highscoreAbschicken();
-        }
+        Abschlussaufgabe.nameSpieler = prompt("Dein Highscore: " + Abschlussaufgabe.punkteanzahl, "Bitte gib deinen Namen ein");
+        Abschlussaufgabe.highscoreAbschicken();
+        alert("neues Spiel starten");
+        window.location.reload();
     }
     function falleFutterKlein() {
         let futterKlein = new Abschlussaufgabe.FutterKlein();

@@ -78,10 +78,10 @@ namespace Abschlussaufgabe {
 
     function gameOver(): void { //Name eingeben um an Server zu schicken
         window.clearTimeout(timeout);
-        nameSpieler = prompt("Dein Highscore: " + punkteanzahl + "Bitte gib deinen Namen ein:");
-        if (nameSpieler != null) {
-            highscoreAbschicken();
-        }
+        nameSpieler = prompt("Dein Highscore: " + punkteanzahl, "Bitte gib deinen Namen ein");
+        highscoreAbschicken();
+        alert("neues Spiel starten");
+        window.location.reload();
     }
 
     function falleFutterKlein(): void {

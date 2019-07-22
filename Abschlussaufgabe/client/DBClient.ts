@@ -10,7 +10,7 @@ namespace Abschlussaufgabe {
         console.log(query);
     }
 
-    function refresh(_event: Event): void {
+    export function refresh(): void {
         let query: string = "command=refresh";
         sendRequest(query, handleFindResponse);
     }
