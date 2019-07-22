@@ -7,23 +7,30 @@ Datum: <27.07.2019>
 Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und auch nicht diktiert.*/
 
 namespace Abschlussaufgabe {
-    document.addEventListener("DOMContentLoaded", init);
+    document.addEventListener("DOMContentLoaded", startbildschirm);
     export let crc: CanvasRenderingContext2D;
     export let canvas: HTMLCanvasElement;
     export let objekteArray: AlleObjekte[] = [];
     let fps: number = 30;
     let imageData: ImageData;
-    export let spielerfisch: Spielerfisch;
-    export let blub: Blubber;
-    export let ersterFisch: KleinerFisch;
-    export let zweiterFisch: GroßerFisch
+    let spielerfisch: Spielerfisch;
+    let blub: Blubber;
+    let ersterFisch: KleinerFisch;
+    let mittelFisch: MittelFisch;
+    let zweiterFisch: GroßerFisch;
+    let punkteanzahl: number = 0; //Highscore
+    let schwimmG: number = 10; // Schwimmgeschwindigkeit des Spielerfisches 
 
-    function init(): void {
+    function startbildschirm(): void {
+        document.getElementById("Start").addEventListener("click", init);
         canvas = document.getElementsByTagName("canvas")[0];
         crc = canvas.getContext("2d");
+        hintergrund();
+    }
+
+    function init(_event: Event): void {
 
         document.addEventListener("keydown", steuerungFisch);
-        hintergrund();
 
         imageData = crc.getImageData(0, 0, canvas.width, canvas.height);
 
@@ -31,23 +38,62 @@ namespace Abschlussaufgabe {
             blub = new Blubber(Math.random());
             objekteArray.push(blub);
         }
-        for (let i: number = 0; i < 5; i++) {
-            let ersterFisch = new KleinerFisch();
-            objekteArray.push(ersterFisch);
+        for (let i: number = 0; i < 3; i++) {
+            falleFutterParty();
         }
-        for (let i: number = 0; i < 1; i++) {
-            let zweiterFisch = new GroßerFisch();
-            objekteArray.push(zweiterFisch);
+        for (let i: number = 0; i < 3; i++) {
+            falleFutterQualle();
+        }
+        for (let i: number = 0; i < 8; i++) {
+            erstelleErsterFisch();
+        }
+        for (let i: number = 0; i < 5; i++) {
+            erstelleMittelFisch();
         }
         for (let i: number = 0; i < 2; i++) {
-            let qualle: Qualle = new Qualle();
-            objekteArray.push(qualle);
+            erstelleZweiterFisch();
         }
-
+        for (let i: number = 0; i < 2; i++) {
+            erstellePartyFisch();
+        }
+        let böserFisch: BoeserFisch = new BoeserFisch();
+        objekteArray.push(böserFisch);
+        erstelleQualle();
         spielerfisch = new Spielerfisch();
         objekteArray.push(spielerfisch);
 
         update();
+
+    }
+
+    function falleFutterParty(): void {
+        let futterParty: FutterParty = new FutterParty();
+        objekteArray.push(futterParty);
+    }
+    function falleFutterQualle(): void {
+        let futterQualle: FutterQualle = new FutterQualle();
+        objekteArray.push(futterQualle);
+    }
+    function erstelleQualle(): void {
+        let qualle: Qualle = new Qualle();
+        objekteArray.push(qualle);
+    }
+
+    function erstelleErsterFisch(): void {
+        ersterFisch = new KleinerFisch();
+        objekteArray.push(ersterFisch);
+    }
+    function erstelleMittelFisch(): void {
+        mittelFisch = new MittelFisch();
+        objekteArray.push(mittelFisch);
+    }
+    function erstelleZweiterFisch(): void {
+        zweiterFisch = new GroßerFisch();
+        objekteArray.push(zweiterFisch);
+    }
+    function erstellePartyFisch(): void {
+        let partyFisch: PartyFisch = new PartyFisch();
+        objekteArray.push(partyFisch);
     }
 
     function update(): void {
@@ -55,73 +101,183 @@ namespace Abschlussaufgabe {
         crc.clearRect(0, 0, canvas.width, canvas.height);
         crc.putImageData(imageData, 0, 0);
         fressen();
+        typAendern();
         for (let i: number = 0; i < objekteArray.length; i++) {
             objekteArray[i].update();
         }
     }
 
+    function typAendern(): void { //typ des Spielerfisches ändern, um größere Fische essen zu können + Schwimmgeschwindigkeit ändern
+        if (punkteanzahl > 200) {
+            spielerfisch.typ = 2;
+            schwimmG = 5;
+        }
+        else if (punkteanzahl > 900) {
+            spielerfisch.typ = 3;
+            schwimmG = 3;
+        }
+    }
+
+    function punktezahl(): void { //Highscore anzeigen
+        document.getElementById("Punktezahl").innerHTML = "";
+        let div: HTMLDivElement = document.createElement("div");
+        div.innerHTML = `<p>${punkteanzahl}</p>`;
+        document.getElementById("Punktezahl").appendChild(div);
+    }
+
+    //fressen + wachsen des Spielerfisches + Punkteanzahl erhöhen + gefressene Fische wieder neu erstellen
     function fressen(): void {
         for (let i: number = 0; i < objekteArray.length; i++) {
             let distanz: number = Math.hypot(objekteArray[i].x - spielerfisch.x, objekteArray[i].y - spielerfisch.y);
             if ((objekteArray[i].typ == spielerfisch.typ || objekteArray[i].typ < spielerfisch.typ) && objekteArray[i] != spielerfisch && objekteArray[i].typ != 0) {
-                if (distanz < 20) {
+
+                //normale Fische
+                if (distanz < 20 && objekteArray[i].typ == 1) { //kleinerFisch gefressen
                     objekteArray.splice(i, 1);
-                    if (objekteArray[i].typ == 1) {
-                        spielerfisch.w += 1;
+                    spielerfisch.w += 0.2;
+                    punkteanzahl += 10;
+                    punktezahl();
+                    erstelleErsterFisch(); //gefressener Fisch neu 
+
+                }
+                else if (distanz < 20 && objekteArray[i].typ == 2) {
+                    objekteArray.splice(i, 1);
+                    spielerfisch.w += 0.5;
+                    punkteanzahl += 50;
+                    punktezahl();
+                    erstelleMittelFisch(); //gefressener Fisch neu
+                }
+                else if (distanz < 20 && objekteArray[i].typ == 3) { //großerFisch gefressen
+                    objekteArray.splice(i, 1);
+                    spielerfisch.w += 1;
+                    punkteanzahl += 100;
+                    punktezahl();
+                    erstelleZweiterFisch(); //gefressener Fisch neu
+                }
+
+                //besondere Fische
+                else if (distanz < 30 && objekteArray[i].typ == -1) { //Qualle berühren verlangsamt den Fisch            
+                    spielerfisch.f = "grey";
+                    schwimmG = 1;
+                    spielerfisch.typ = 1;
+                }
+                else if (distanz < 20 && objekteArray[i].typ == -3) { //Partyfisch vertauscht die Navigation
+                    spielerfisch.f = "lime";
+                }
+                else if (distanz < 20 && objekteArray[i].typ == -2) { //Böser Fisch tötet
+                    alert("Game Over");
+                }
+
+                //Futter
+                else if (distanz < 20 && objekteArray[i].typ == -4) {
+                    objekteArray.splice(i, 1);
+                    falleFutterParty();
+                    if (schwimmG == 1) {
+                        spielerfisch.f = "grey";
                     }
-                    else if (objekteArray[i].typ == 2) {
-                        spielerfisch.w += 2;
+                    else if (schwimmG > 1) {
+                        spielerfisch.f = "aqua";
                     }
                 }
+                else if (distanz < 20 && objekteArray[i].typ == -5) {
+                    objekteArray.splice(i, 1);
+                    spielerfisch.f = "aqua";
+                    falleFutterQualle();
+                    if (punkteanzahl <= 200) {
+                        spielerfisch.typ = 1;
+                        schwimmG = 10;
+                    }
+                    else if (punkteanzahl > 200) {
+                        spielerfisch.typ = 2;
+                        schwimmG = 5;
+                    }
+                    else if (punkteanzahl > 900) {
+                        spielerfisch.typ = 3;
+                        schwimmG = 3;
+                    }
+
+                }
+
             }
-            else if (objekteArray[i].typ > spielerfisch.typ) {
+            else if (objekteArray[i].typ > spielerfisch.typ) { //gefressen werden (Gameover)
                 if (distanz < 20) {
                     objekteArray.splice(0, 1);
                     alert("Game Over");
+                    
                 }
             }
         }
     }
 
     //Fisch steuern
-    function steuerungFisch(event: KeyboardEvent): void {
-        if (event.keyCode == 39) { //rechts
-            spielerfisch.x += 5;
-            if (spielerfisch.x > 800) {
-                spielerfisch.x = 0;
+    function steuerungFisch(_event: KeyboardEvent): void {
+        if (spielerfisch.f != "lime") {
+            if (_event.keyCode == 39) { //rechts
+                spielerfisch.x += schwimmG;
+                if (spielerfisch.x > 800) {
+                    spielerfisch.x = 0;
+                }
+            }
+            if (_event.keyCode == 37) { //links
+                spielerfisch.x -= schwimmG;
+                if (spielerfisch.x < 0) {
+                    spielerfisch.x = 800;
+                }
+            }
+            if (_event.keyCode == 38) { //hoch
+                spielerfisch.y -= schwimmG;
+                if (spielerfisch.y < 0) {
+                    spielerfisch.y = 600;
+                }
+            }
+            if (_event.keyCode == 40) { //runter
+                spielerfisch.y += schwimmG;
+                if (spielerfisch.y > 600) {
+                    spielerfisch.y = 0;
+                }
             }
         }
-        if (event.keyCode == 37) { //links
-            spielerfisch.x -= 5;
-            if (spielerfisch.x < 0) {
-                spielerfisch.x = 800;
+        else if (spielerfisch.f == "lime") {
+            if (_event.keyCode == 37) { //rechts, schwimmt aber links
+                spielerfisch.x += schwimmG;
+                if (spielerfisch.x < 0) {
+                    spielerfisch.x = 800;
+                }
             }
-        }
-        if (event.keyCode == 38) { //hoch
-            spielerfisch.y -= 5;
-            if (spielerfisch.y < 0) {
-                spielerfisch.y = 600;
+            if (_event.keyCode == 39) { //links, schwimmt aber rechts
+                spielerfisch.x -= schwimmG;
+                if (spielerfisch.x > 800) {
+                    spielerfisch.x = 0;
+                }
             }
-        }
-        if (event.keyCode == 40) { //runter
-            spielerfisch.y += 5;
-            if (spielerfisch.y > 600) {
-                spielerfisch.y = 0;
+            if (_event.keyCode == 40) { //hoch, schwimmt aber runter
+                spielerfisch.y -= schwimmG;
+                if (spielerfisch.y > 600) {
+                    spielerfisch.y = 0;
+                }
+            }
+            if (_event.keyCode == 38) { //runter, schwimmt aber hoch
+                spielerfisch.y += schwimmG;
+                if (spielerfisch.y < 0) {
+                    spielerfisch.y = 600;
+                }
             }
         }
     }
 
-
-
-    function hintergrund() {
+    function hintergrund(): void {
         let wasser: Path2D = new Path2D();
         wasser.rect(0, 0, 800, 600);
-        crc.fillStyle = "MediumBlue ";
+        crc.fillStyle = "Mediumblue";
         crc.fill(wasser);
         crc.stroke(wasser);
 
         let sand: Path2D = new Path2D();
-        sand.rect(0, 500, 800, 100);
+        sand.moveTo(0, 500);
+        sand.bezierCurveTo(270, 450, 580, 550, 800, 500);
+        sand.lineTo(800, 600);
+        sand.lineTo(0, 600);
+        sand.closePath();
         crc.fillStyle = "SandyBrown";
         crc.fill(sand);
         crc.stroke(sand);
@@ -138,7 +294,7 @@ namespace Abschlussaufgabe {
         seestern.lineTo(670, 590);
         seestern.lineTo(690, 560);
         seestern.lineTo(650, 550);
-        crc.fillStyle = "DeepPink";
+        crc.fillStyle = "fuchsia";
         crc.fill(seestern);
         crc.stroke(seestern);
         let auge: Path2D = new Path2D();
@@ -156,27 +312,95 @@ namespace Abschlussaufgabe {
         mund.bezierCurveTo(720, 570, 700, 570, 700, 560);
         crc.stroke(mund);
 
-        for (let i: number = 0; i < 11; i++) {
-            let x: number = 200 + Math.random() * 400;
-            let y: number = 500 + Math.random() * 100;
+        stein(280, 580);
+        stein(750, 520);
+        stein(450, 550);
+        stein(85, 585);
+        stein(200, 540);
+        function stein(_x: number, _y: number) {
             let stein: Path2D = new Path2D();
-            stein.moveTo(x, y);
-            stein.quadraticCurveTo(x + 10, y - 40, x + 50, y);
-            stein.quadraticCurveTo(x - 10, y + 10, x, y);
+            stein.moveTo(_x, _y);
+            stein.quadraticCurveTo(_x + 10, _y - 40, _x + 50, _y);
+            stein.quadraticCurveTo(_x - 10, _y + 10, _x, _y);
             crc.fillStyle = "Sienna";
             crc.fill(stein);
             crc.stroke(stein);
         }
-        for (let i: number = 0; i < 8; i++) {
-            let x: number = Math.random() * 200;
-            let y: number = 500 + Math.random() * 100;
+        stein2(90, 520);
+        stein2(390, 590);
+        stein2(550, 590);
+        stein2(280, 520);
+        stein2(520, 520);
+        function stein2(_x: number, _y: number) {
+            let stein: Path2D = new Path2D();
+            stein.moveTo(_x, _y);
+            stein.bezierCurveTo(_x + 10, _y - 20, _x + 30, _y - 40, _x + 50, _y);
+            stein.bezierCurveTo(_x + 30, _y + 5, _x + 20, _y + 5, _x, _y);
+            crc.fillStyle = "Maroon";
+            crc.fill(stein);
+            crc.stroke(stein);
+        }
+        gras3(10, 510);
+        gras2(30, 530);
+        gras(45, 520);
+        gras2(75, 530);
+        gras3(25, 540);
+        gras(10, 550);
+        gras3(40, 560);
+        gras2(60, 540);
+        gras(50, 590);
+        gras(90, 540);
+        gras2(100, 560);
+        gras3(80, 570);
+        gras(12, 590);
+        gras3(28, 585);
+        gras2(67, 598);
+        function gras(_x: number, _y: number): void {
             let gras: Path2D = new Path2D();
-            gras.moveTo(x, y);
-            gras.quadraticCurveTo(x + 10, y - 70, x - 5, y - 90);
-            gras.quadraticCurveTo(x - 20, y - 70, x - 10, y);
+            gras.moveTo(_x, _y);
+            gras.quadraticCurveTo(_x + 10, _y - 70, _x - 5, _y - 90);
+            gras.quadraticCurveTo(_x - 20, _y - 70, _x - 10, _y);
             crc.fillStyle = "MediumSpringGreen";
             crc.fill(gras);
             crc.stroke(gras);
         }
+        function gras2(_x: number, _y: number): void {
+            let gras: Path2D = new Path2D();
+            gras.moveTo(_x, _y);
+            gras.quadraticCurveTo(_x + 10, _y - 70, _x - 5, _y - 90);
+            gras.quadraticCurveTo(_x - 20, _y - 70, _x - 10, _y);
+            crc.fillStyle = "DarkSeaGreen";
+            crc.fill(gras);
+            crc.stroke(gras);
+        }
+        function gras3(_x: number, _y: number): void {
+            let gras: Path2D = new Path2D();
+            gras.moveTo(_x, _y);
+            gras.quadraticCurveTo(_x + 10, _y - 70, _x - 5, _y - 90);
+            gras.quadraticCurveTo(_x - 20, _y - 70, _x - 10, _y);
+            crc.fillStyle = "LightGreen";
+            crc.fill(gras);
+            crc.stroke(gras);
+        }
+        let koralle: Path2D = new Path2D();
+        koralle.moveTo(400, 550);
+        koralle.quadraticCurveTo(360, 460, 390, 490);
+        koralle.quadraticCurveTo(410, 510, 410, 430);
+        koralle.quadraticCurveTo(410, 380, 430, 460);
+        koralle.quadraticCurveTo(430, 480, 450, 460);
+        koralle.bezierCurveTo(460, 440, 470, 450, 450, 480);
+        koralle.quadraticCurveTo(410, 530, 420, 550);
+        koralle.bezierCurveTo(410, 555, 405, 545, 400, 550);
+        crc.fillStyle = "gold";
+        crc.fill(koralle);
+        crc.stroke(koralle);
+    }
+    export function getRandomColor() {
+        var letters = '0123456789ABCDEF';
+        var color = '#';
+        for (var i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
     }
 }

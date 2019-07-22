@@ -6,7 +6,8 @@ var Abschlussaufgabe;
             this.x = 100 + Math.random() * 600;
             this.y = Math.random();
             this.dx = 0;
-            this.dy = Math.random() * -7;
+            this.dy = -5;
+            this.typ = -1;
         }
         draw() {
             let körper = new Path2D();
@@ -48,6 +49,7 @@ var Abschlussaufgabe;
             this.y += this.dy;
             if (this.y < 0) {
                 this.y = 600 + this.dy;
+                this.x = 100 + Math.random() * 600;
             }
         }
     }

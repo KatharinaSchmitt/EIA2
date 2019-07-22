@@ -1,7 +1,8 @@
 namespace Abschlussaufgabe {
     export class Spielerfisch extends AlleObjekte {
 
-        w: number = 10; //Nummer, die verwendet wird, dass der Fisch wachsen kann
+        w: number = 5; //Nummer, die verwendet wird, dass der Fisch wachsen kann
+        f: string = "aqua";
 
         constructor() {
             super();
@@ -17,11 +18,11 @@ namespace Abschlussaufgabe {
             fisch.quadraticCurveTo(this.x + 3 * this.w, this.y - this.w * 4, this.x + this.w * 8, this.y + this.w * 1.5);
             fisch.lineTo(this.x + this.w * 8, this.y - this.w * 2);
             fisch.quadraticCurveTo(this.x + this.w * 3, this.y + this.w * 4, this.x, this.y);
-            crc.fillStyle = "blue";
+            crc.fillStyle = this.f;
             crc.fill(fisch);
             crc.stroke(fisch);
             let auge: Path2D = new Path2D();
-            auge.arc(this.x + 15, this.y - 2, 2, 0, 2 * Math.PI);
+            auge.arc(this.x + this.w * 1.5, this.y - this.w / 5, this.w / 5, 0, 2 * Math.PI);
             crc.fillStyle = "black";
             crc.fill(auge);
             crc.stroke(auge);

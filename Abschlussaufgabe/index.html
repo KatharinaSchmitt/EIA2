@@ -7,22 +7,50 @@ Datum: <27.07.2019>
 Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und auch nicht diktiert.-->
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=Ca, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="./styles/main.css">
     <title>Aufgabe 12</title>
 </head>
 <body>
     <canvas width="800" height="600" style="border: 1px solid black"></canvas>
+    <div id="Highscore">
+        <p>Highscore</p>
+        <p id="Punktezahl"></p>
+    </div>
+    <div id="Anleitung">
+            <h1>Blub</h1>
+            <p>Fang so viele Fische wie möglich!</p>
+            <p>Die Steuerung funktioniert über die Pfeiltasten deiner Tastatur.
+                Aufgepasst!
+                Du kannst nur Fische fangen, kleiner oder genauso groß sind wie du.
+                Es kann nur mit dem Mund des Fisches gefangen werden, genauso ist aber auch nur der Mund der gegnerischen Fischen gefährlich.
+                Außerdem lauern auch ein paar Gefahren im Wasser:
+                <ul>
+                    <li>Partyfisch: die Steuerung wird umgekehrt</li>
+                    <li>Qualle: du kannst nur noch langsam schwimmen</li>
+                    <li>Anglerfisch: Game Over</li>
+                </ul>
+                Die Wirkung des Partyfisches und der Qualle können durch daas Fressen des passenden Futters aufgehoben werden. 
+                Die Farbe deines Fisches zeigt dir an, welches Futter du fressen musst.
+            </p>
+            <button id="Start">Spiel starten</button>
+        </div>
     <script src="./js/main.js"></script>
     <script src="./js/AlleObjekte.js"></script>
     <script src="./js/BewegteObjekte.js"></script>
     <script src="./js/Spielerfisch.js"></script>
     <script src="./js/großerFisch.js"></script>
+    <script src="./js/MittelFisch.js"></script>
     <script src="./js/kleinerFisch.js"></script>
     <script src="./js/qualle.js"></script>
+    <script src="./js/boeserFisch.js"></script>
+    <script src="./js/PartyFisch.js"></script>
     <script src="./js/Blubber.js"></script>
+    <script src="./js/FutterParty.js"></script>
+    <script src="./js/FutterQualle.js"></script>
 </body>
 </html>

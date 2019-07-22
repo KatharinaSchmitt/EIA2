@@ -1,25 +1,25 @@
 var Abschlussaufgabe;
 (function (Abschlussaufgabe) {
-    class KleinerFisch extends Abschlussaufgabe.BewegteObjekte {
+    class MittelFisch extends Abschlussaufgabe.BewegteObjekte {
         constructor() {
             super();
             this.x = Math.random() * -Abschlussaufgabe.canvas.width;
             this.y = Math.random() * 500;
-            this.dx = 10;
+            this.dx = 7;
             this.dy = 0;
-            this.typ = 1;
+            this.typ = 2;
         }
         draw() {
             let fisch = new Path2D();
             fisch.moveTo(this.x, this.y);
-            fisch.quadraticCurveTo(this.x - 15, this.y + 20, this.x - 40, this.y - 7.5);
-            fisch.lineTo(this.x - 40, this.y + 10);
-            fisch.quadraticCurveTo(this.x - 15, this.y - 20, this.x, this.y);
-            Abschlussaufgabe.crc.fillStyle = "Crimson";
+            fisch.quadraticCurveTo(this.x - 30, this.y + 40, this.x - 80, this.y - 15);
+            fisch.lineTo(this.x - 80, this.y + 20);
+            fisch.quadraticCurveTo(this.x - 30, this.y - 40, this.x, this.y);
+            Abschlussaufgabe.crc.fillStyle = "DarkOrange";
             Abschlussaufgabe.crc.fill(fisch);
             Abschlussaufgabe.crc.stroke(fisch);
             let auge = new Path2D();
-            auge.arc(this.x - 7.5, this.y - 0.5, 1, 0, 2 * Math.PI);
+            auge.arc(this.x - 15, this.y - 1, 2, 0, 2 * Math.PI);
             Abschlussaufgabe.crc.fillStyle = "black";
             Abschlussaufgabe.crc.fill(auge);
             Abschlussaufgabe.crc.stroke(auge);
@@ -33,6 +33,6 @@ var Abschlussaufgabe;
             }
         }
     }
-    Abschlussaufgabe.KleinerFisch = KleinerFisch;
+    Abschlussaufgabe.MittelFisch = MittelFisch;
 })(Abschlussaufgabe || (Abschlussaufgabe = {}));
-//# sourceMappingURL=kleinerFisch.js.map
+//# sourceMappingURL=MittelFisch.js.map
