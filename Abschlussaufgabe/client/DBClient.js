@@ -7,6 +7,7 @@ var Abschlussaufgabe;
         query += "&name=" + Abschlussaufgabe.nameSpieler;
         query += "&highscore=" + Abschlussaufgabe.punkteanzahl;
         sendRequest(query, handleInsertResponse);
+        console.log(query);
     }
     Abschlussaufgabe.highscoreAbschicken = highscoreAbschicken;
     function refresh(_event) {

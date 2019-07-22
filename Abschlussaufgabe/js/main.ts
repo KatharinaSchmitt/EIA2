@@ -45,6 +45,9 @@ namespace Abschlussaufgabe {
         for (let i: number = 0; i < 3; i++) {
             falleFutterQualle();
         }
+        for (let i: number = 0; i < 3; i++) {
+            falleFutterKlein();
+        }
         for (let i: number = 0; i < 8; i++) {
             erstelleErsterFisch();
         }
@@ -68,17 +71,23 @@ namespace Abschlussaufgabe {
         if (spielerfisch.w > 30) {
             gameOver();
         }
+        if (spielerfisch.w < 5) {
+            gameOver();
+        }
     }
 
     function gameOver(): void { //Name eingeben um an Server zu schicken
         window.clearTimeout(timeout);
-        nameSpieler = prompt("Dein Highscore:" + punkteanzahl + "Bitte gib deinen Namen ein:");
+        nameSpieler = prompt("Dein Highscore: " + punkteanzahl + "Bitte gib deinen Namen ein:");
         if (nameSpieler != null) {
             highscoreAbschicken();
         }
     }
 
-
+    function falleFutterKlein(): void {
+        let futterKlein: FutterKlein = new FutterKlein();
+        objekteArray.push(futterKlein);
+    }
 
     function falleFutterParty(): void {
         let futterParty: FutterParty = new FutterParty();
@@ -131,12 +140,7 @@ namespace Abschlussaufgabe {
     }
 
     function typAendern(): void { //typ des Spielerfisches ändern, um größere Fische essen zu können + Schwimmgeschwindigkeit ändern
-        if (punkteanzahl <= 200) {
-            spielerfisch.typ = 1;
-            schwimmG = 10;
-            spielerfisch.f = "aqua";
-        }
-        else if (punkteanzahl > 200 && punkteanzahl <= 900) {
+        if (punkteanzahl > 200 && punkteanzahl <= 900) {
             spielerfisch.typ = 2;
             schwimmG = 5;
             spielerfisch.f = "Aquamarine";
@@ -155,7 +159,8 @@ namespace Abschlussaufgabe {
         document.getElementById("Punktezahl").appendChild(div);
         document.getElementById("Größe").innerHTML = "";
         let div2: HTMLDivElement = document.createElement("div");
-        div2.innerHTML = `<p>${spielerfisch.w}</p>`;
+        let w: string = spielerfisch.w.toFixed(2);
+        div2.innerHTML = `<p>${w}</p>`;
         document.getElementById("Größe").appendChild(div2);
     }
 
@@ -190,7 +195,7 @@ namespace Abschlussaufgabe {
                 }
 
                 //besondere Fische
-                else if (distanz < 30 && objekteArray[i].typ == -1) { //Qualle berühren verlangsamt den Fisch            
+                else if (distanz < 20 && objekteArray[i].typ == -1) { //Qualle berühren verlangsamt den Fisch            
                     spielerfisch.f = "grey";
                     schwimmG = 1;
                     spielerfisch.typ = 1;
@@ -246,6 +251,12 @@ namespace Abschlussaufgabe {
                         schwimmG = 3;
                         spielerfisch.f = "MediumSeaGreen"
                     }
+
+                }
+                else if (distanz < 20 && objekteArray[i].typ == -6) {
+                    spielerfisch.w = spielerfisch.w - 1;
+                    objekteArray.splice(i, 1);
+                    falleFutterKlein();
                 }
 
             }

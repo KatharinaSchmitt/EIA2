@@ -18,25 +18,29 @@ Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde n
 <body>
     <canvas width="800" height="600" style="border: 1px solid black"></canvas>
     <div id="Highscore">
-        <p>Highscore</p>
-        <p id="Punktezahl"></p>
+        <p>Highscore<p id="Punktezahl"></p></p>
+        
         <p id="Größe"></p>
     </div>
     <div id="Anleitung">
             <h1>Blub</h1>
             <p>Fang so viele Fische wie möglich!</p>
-            <p>Die Steuerung funktioniert über die Pfeiltasten deiner Tastatur.
+            <p>Du bist der kleine blaue Fisch.
+                Die Steuerung funktioniert über die Pfeiltasten deiner Tastatur.
                 Aufgepasst!
                 Du kannst nur Fische fangen, kleiner oder genauso groß sind wie du.
                 Es kann nur mit dem Mund des Fisches gefangen werden, genauso ist aber auch nur der Mund der gegnerischen Fischen gefährlich.
+                Wenn dein Fisch seine Farbe ändert, kannst du den nächst größeren Fressen. 
+                (Sobald du eine Fischart einmal fressen kannst, ist sie dir nicht mehr gefährlich.)
                 Außerdem lauern auch ein paar Gefahren im Wasser:
                 <ul>
                     <li>Partyfisch: die Steuerung wird umgekehrt</li>
                     <li>Qualle: du kannst nur noch langsam schwimmen</li>
                     <li>Anglerfisch: Game Over</li>
                 </ul>
-                Die Wirkung des Partyfisches und der Qualle können durch daas Fressen des passenden Futters aufgehoben werden. 
+                Die Wirkung des Partyfisches und der Qualle können durch das Fressen des passenden Futters aufgehoben werden. 
                 Die Farbe deines Fisches zeigt dir an, welches Futter du fressen musst.
+                Das rote Futter macht deinen Fisch kleiner. Pass auf, dass dein Fisch nicht größer als 30 und nicht kleiner als 5 ist!
             </p>
             <button id="Start">Spiel starten</button>
         </div>
@@ -53,6 +57,7 @@ Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde n
     <script src="./js/Blubber.js"></script>
     <script src="./js/FutterParty.js"></script>
     <script src="./js/FutterQualle.js"></script>
-    <script src="DBClient.js" type="text/javascript" charset="utf-8"></script>
+    <script src="./js/FutterKlein.js"></script>
+    <script src="./client/DBClient.js" type="text/javascript" charset="utf-8"></script>
 </body>
 </html>

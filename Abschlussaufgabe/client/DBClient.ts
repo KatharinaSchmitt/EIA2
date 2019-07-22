@@ -7,6 +7,7 @@ namespace Abschlussaufgabe {
         query += "&name=" + nameSpieler;
         query += "&highscore=" + punkteanzahl;
         sendRequest(query, handleInsertResponse);
+        console.log(query);
     }
 
     function refresh(_event: Event): void {

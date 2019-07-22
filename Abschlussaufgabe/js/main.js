@@ -38,6 +38,9 @@ var Abschlussaufgabe;
         for (let i = 0; i < 3; i++) {
             falleFutterQualle();
         }
+        for (let i = 0; i < 3; i++) {
+            falleFutterKlein();
+        }
         for (let i = 0; i < 8; i++) {
             erstelleErsterFisch();
         }
@@ -60,13 +63,20 @@ var Abschlussaufgabe;
         if (spielerfisch.w > 30) {
             gameOver();
         }
+        if (spielerfisch.w < 5) {
+            gameOver();
+        }
     }
     function gameOver() {
         window.clearTimeout(timeout);
-        Abschlussaufgabe.nameSpieler = prompt("Dein Highscore:" + Abschlussaufgabe.punkteanzahl + "Bitte gib deinen Namen ein:");
+        Abschlussaufgabe.nameSpieler = prompt("Dein Highscore: " + Abschlussaufgabe.punkteanzahl + "Bitte gib deinen Namen ein:");
         if (Abschlussaufgabe.nameSpieler != null) {
             Abschlussaufgabe.highscoreAbschicken();
         }
+    }
+    function falleFutterKlein() {
+        let futterKlein = new Abschlussaufgabe.FutterKlein();
+        Abschlussaufgabe.objekteArray.push(futterKlein);
     }
     function falleFutterParty() {
         let futterParty = new Abschlussaufgabe.FutterParty();
@@ -115,12 +125,7 @@ var Abschlussaufgabe;
         }
     }
     function typAendern() {
-        if (Abschlussaufgabe.punkteanzahl <= 200) {
-            spielerfisch.typ = 1;
-            schwimmG = 10;
-            spielerfisch.f = "aqua";
-        }
-        else if (Abschlussaufgabe.punkteanzahl > 200 && Abschlussaufgabe.punkteanzahl <= 900) {
+        if (Abschlussaufgabe.punkteanzahl > 200 && Abschlussaufgabe.punkteanzahl <= 900) {
             spielerfisch.typ = 2;
             schwimmG = 5;
             spielerfisch.f = "Aquamarine";
@@ -138,7 +143,8 @@ var Abschlussaufgabe;
         document.getElementById("Punktezahl").appendChild(div);
         document.getElementById("Größe").innerHTML = "";
         let div2 = document.createElement("div");
-        div2.innerHTML = `<p>${spielerfisch.w}</p>`;
+        let w = spielerfisch.w.toFixed(2);
+        div2.innerHTML = `<p>${w}</p>`;
         document.getElementById("Größe").appendChild(div2);
     }
     //fressen + wachsen des Spielerfisches + Punkteanzahl erhöhen + gefressene Fische wieder neu erstellen
@@ -169,7 +175,7 @@ var Abschlussaufgabe;
                     erstelleZweiterFisch(); //gefressener Fisch neu
                 }
                 //besondere Fische
-                else if (distanz < 30 && Abschlussaufgabe.objekteArray[i].typ == -1) { //Qualle berühren verlangsamt den Fisch            
+                else if (distanz < 20 && Abschlussaufgabe.objekteArray[i].typ == -1) { //Qualle berühren verlangsamt den Fisch            
                     spielerfisch.f = "grey";
                     schwimmG = 1;
                     spielerfisch.typ = 1;
@@ -224,6 +230,11 @@ var Abschlussaufgabe;
                         schwimmG = 3;
                         spielerfisch.f = "MediumSeaGreen";
                     }
+                }
+                else if (distanz < 20 && Abschlussaufgabe.objekteArray[i].typ == -6) {
+                    spielerfisch.w = spielerfisch.w - 1;
+                    Abschlussaufgabe.objekteArray.splice(i, 1);
+                    falleFutterKlein();
                 }
             }
             else if (Abschlussaufgabe.objekteArray[i].typ > spielerfisch.typ) { //gefressen werden (Gameover)
