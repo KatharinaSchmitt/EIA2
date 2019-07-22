@@ -11,6 +11,8 @@ namespace Abschlussaufgabe {
     export let crc: CanvasRenderingContext2D;
     export let canvas: HTMLCanvasElement;
     export let objekteArray: AlleObjekte[] = [];
+    export let nameSpieler: string;
+    let timeout: number;
     let fps: number = 30;
     let imageData: ImageData;
     let spielerfisch: Spielerfisch;
@@ -18,7 +20,7 @@ namespace Abschlussaufgabe {
     let ersterFisch: KleinerFisch;
     let mittelFisch: MittelFisch;
     let zweiterFisch: GroßerFisch;
-    let punkteanzahl: number = 0; //Highscore
+    export let punkteanzahl: number = 0; //Highscore
     let schwimmG: number = 10; // Schwimmgeschwindigkeit des Spielerfisches 
 
     function startbildschirm(): void {
@@ -29,7 +31,6 @@ namespace Abschlussaufgabe {
     }
 
     function init(_event: Event): void {
-
         document.addEventListener("keydown", steuerungFisch);
 
         imageData = crc.getImageData(0, 0, canvas.width, canvas.height);
@@ -56,15 +57,25 @@ namespace Abschlussaufgabe {
         for (let i: number = 0; i < 2; i++) {
             erstellePartyFisch();
         }
-        let böserFisch: BoeserFisch = new BoeserFisch();
-        objekteArray.push(böserFisch);
+        erstelleBöserFisch();
         erstelleQualle();
         spielerfisch = new Spielerfisch();
         objekteArray.push(spielerfisch);
-
         update();
-
     }
+
+    function zuGross(): void { //wenn Spielerfisch zu groß, dann sterben
+        if (spielerfisch.w > 30) {
+            gameOver();
+        }
+    }
+
+    function gameOver(): void { //Name eingeben um an Server zu schicken
+        window.clearTimeout(timeout);
+        nameSpieler = prompt("Dein Highscore:" + punkteanzahl + "Bitte gib deinen Namen ein:")
+    }
+
+
 
     function falleFutterParty(): void {
         let futterParty: FutterParty = new FutterParty();
@@ -77,6 +88,10 @@ namespace Abschlussaufgabe {
     function erstelleQualle(): void {
         let qualle: Qualle = new Qualle();
         objekteArray.push(qualle);
+    }
+    function erstelleBöserFisch(): void {
+        let böserFisch: BoeserFisch = new BoeserFisch();
+        objekteArray.push(böserFisch);
     }
 
     function erstelleErsterFisch(): void {
@@ -96,25 +111,37 @@ namespace Abschlussaufgabe {
         objekteArray.push(partyFisch);
     }
 
+    function setTimeout():void {
+        timeout = window.setTimeout(update, 1000 / fps);
+    }
+
     function update(): void {
-        window.setTimeout(update, 1000 / fps);
+        setTimeout();
         crc.clearRect(0, 0, canvas.width, canvas.height);
         crc.putImageData(imageData, 0, 0);
         fressen();
         typAendern();
+        zuGross();
         for (let i: number = 0; i < objekteArray.length; i++) {
             objekteArray[i].update();
         }
     }
 
     function typAendern(): void { //typ des Spielerfisches ändern, um größere Fische essen zu können + Schwimmgeschwindigkeit ändern
-        if (punkteanzahl > 200) {
+        if (punkteanzahl <= 200) {
+            spielerfisch.typ = 1;
+            schwimmG = 10;
+            spielerfisch.f = "aqua";
+        }
+        else if (punkteanzahl > 200 && punkteanzahl <= 900) {
             spielerfisch.typ = 2;
             schwimmG = 5;
+            spielerfisch.f = "Aquamarine";
         }
         else if (punkteanzahl > 900) {
             spielerfisch.typ = 3;
             schwimmG = 3;
+            spielerfisch.f = "MediumSeaGreen"
         }
     }
 
@@ -123,6 +150,10 @@ namespace Abschlussaufgabe {
         let div: HTMLDivElement = document.createElement("div");
         div.innerHTML = `<p>${punkteanzahl}</p>`;
         document.getElementById("Punktezahl").appendChild(div);
+        document.getElementById("Größe").innerHTML = "";
+        let div2: HTMLDivElement = document.createElement("div");
+        div2.innerHTML = `<p>${spielerfisch.w}</p>`;
+        document.getElementById("Größe").appendChild(div2);
     }
 
     //fressen + wachsen des Spielerfisches + Punkteanzahl erhöhen + gefressene Fische wieder neu erstellen
@@ -165,7 +196,7 @@ namespace Abschlussaufgabe {
                     spielerfisch.f = "lime";
                 }
                 else if (distanz < 20 && objekteArray[i].typ == -2) { //Böser Fisch tötet
-                    alert("Game Over");
+                    gameOver();
                 }
 
                 //Futter
@@ -176,7 +207,21 @@ namespace Abschlussaufgabe {
                         spielerfisch.f = "grey";
                     }
                     else if (schwimmG > 1) {
-                        spielerfisch.f = "aqua";
+                        if (punkteanzahl <= 200) {
+                            spielerfisch.typ = 1;
+                            schwimmG = 10;
+                            spielerfisch.f = "aqua";
+                        }
+                        else if (punkteanzahl > 200 && punkteanzahl <= 900) {
+                            spielerfisch.typ = 2;
+                            schwimmG = 5;
+                            spielerfisch.f = "Aquamarine";
+                        }
+                        else if (punkteanzahl > 900) {
+                            spielerfisch.typ = 3;
+                            schwimmG = 3;
+                            spielerfisch.f = "MediumSeaGreen"
+                        }
                     }
                 }
                 else if (distanz < 20 && objekteArray[i].typ == -5) {
@@ -186,24 +231,26 @@ namespace Abschlussaufgabe {
                     if (punkteanzahl <= 200) {
                         spielerfisch.typ = 1;
                         schwimmG = 10;
+                        spielerfisch.f = "aqua";
                     }
-                    else if (punkteanzahl > 200) {
+                    else if (punkteanzahl > 200 && punkteanzahl <= 900) {
                         spielerfisch.typ = 2;
                         schwimmG = 5;
+                        spielerfisch.f = "Aquamarine";
                     }
                     else if (punkteanzahl > 900) {
                         spielerfisch.typ = 3;
                         schwimmG = 3;
+                        spielerfisch.f = "MediumSeaGreen"
                     }
-
                 }
 
             }
             else if (objekteArray[i].typ > spielerfisch.typ) { //gefressen werden (Gameover)
                 if (distanz < 20) {
                     objekteArray.splice(0, 1);
-                    alert("Game Over");
-                    
+                    gameOver();
+
                 }
             }
         }

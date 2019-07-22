@@ -1,10 +1,4 @@
-/**
- * Simple server managing between client and database
- * @author: Jirka Dell'Oro-Friedl
- * @adapted: Lukas Scheuerle
- */
-
-/*import * as Http from "http";
+import * as Http from "http";
 import * as Url from "url";
 import * as Database from "./Database";
 
@@ -20,7 +14,6 @@ server.addListener("request", handleRequest);
 server.listen(port);
 
 
-
 function handleListen(): void {
     console.log("Listening on port: " + port);
 }
@@ -28,26 +21,25 @@ function handleListen(): void {
 function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerResponse): void {
     console.log("Request received");
 
-    let query: AssocStringString = <AssocStringString> Url.parse(_request.url, true).query;
+    let query: Highscore = <Highscore>Url.parse(_request.url, true).query;
     let command: string = query["command"];
 
     switch (command) {
         case "insert":
-            let student: StudentData = {
+            let spieler: SpielerDaten = {
                 name: query["name"],
-                firstname: query["firstname"],
-                matrikel: parseInt(query["matrikel"])
+                highscore: parseInt(query["highscore"])
             };
-            Database.insert(student);
+            Database.insert(spieler);
             respond(_response, "storing data");
             break;
         case "refresh":
             Database.findAll(findCallback);
             break;
-        case "search":
+        /*case "search":
             let gesNum: string = query["gesNum"];
             Database.suchen(findCallback, gesNum);
-            break
+            break*/
         default:
             respond(_response, "unknown command: " + command);
             break;
@@ -65,4 +57,4 @@ function respond(_response: Http.ServerResponse, _text: string): void {
     _response.setHeader("content-type", "text/html; charset=utf-8");
     _response.write(_text);
     _response.end();
-}*/
+}

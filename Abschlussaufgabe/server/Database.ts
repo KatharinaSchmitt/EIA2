@@ -1,10 +1,4 @@
-/**
- * Simple database insertion and query for MongoDB
- * @author: Jirka Dell'Oro-Friedl
- * @adapted: Lukas Scheuerle
- */
-
-/*import * as Mongo from "mongodb";
+import * as Mongo from "mongodb";
 console.log("Database starting");
 
 let databaseURL: string = "mongodb://localhost:27017";
@@ -33,7 +27,8 @@ function handleConnect(_e: Mongo.MongoError, _client: Mongo.MongoClient): void {
     }
 }
 
-export function insert(_doc: StudentData): void {
+
+export function insert(_doc: SpielerDaten): void {
     // try insertion then activate callback "handleInsert"
     students.insertOne(_doc, handleInsert);
 }
@@ -52,7 +47,7 @@ export function findAll(_callback: Function): void {
 
     // toArray-handler receives two standard parameters, an error object and the array
     // implemented as inner function, so _callback is in scope
-    function prepareAnswer(_e: Mongo.MongoError, studentArray: StudentData[]): void {
+    function prepareAnswer(_e: Mongo.MongoError, studentArray: SpielerDaten[]): void {
         if (_e)
             _callback("Error" + _e);
         else
@@ -61,13 +56,10 @@ export function findAll(_callback: Function): void {
     }
 }
 
-export function suchen(_callback: Function, _gesNum: string): void {
+/*export function suchen(_callback: Function, _gesNum: string): void {
     let gesNum: number = Number(_gesNum);
     students.find({ "matrikel": gesNum }).toArray(prepareAnswer);
-    function prepareAnswer(_e: Mongo.MongoError, studentArray: StudentData[]): void {
+    function prepareAnswer(_e: Mongo.MongoError, studentArray: SpielerDaten[]): void {
         if (_e)
-            _callback("Error" + _e);
-        else
-            _callback(JSON.stringify(studentArray));
-    }
+            _c
 }*/
