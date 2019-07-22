@@ -2,7 +2,7 @@ var Abschlussaufgabe;
 (function (Abschlussaufgabe) {
     //let serverAddress: string = "http://localhost:8100/";
     let serverAddress = "https://eia2-katharina-schmitt.herokuapp.com/";
-    function highscoreAbschicken(_event) {
+    function highscoreAbschicken() {
         let query = "command=insert";
         query += "&name=" + Abschlussaufgabe.nameSpieler;
         query += "&highscore=" + Abschlussaufgabe.punkteanzahl;

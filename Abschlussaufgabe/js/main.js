@@ -64,6 +64,9 @@ var Abschlussaufgabe;
     function gameOver() {
         window.clearTimeout(timeout);
         Abschlussaufgabe.nameSpieler = prompt("Dein Highscore:" + Abschlussaufgabe.punkteanzahl + "Bitte gib deinen Namen ein:");
+        if (Abschlussaufgabe.nameSpieler != null) {
+            Abschlussaufgabe.highscoreAbschicken();
+        }
     }
     function falleFutterParty() {
         let futterParty = new Abschlussaufgabe.FutterParty();

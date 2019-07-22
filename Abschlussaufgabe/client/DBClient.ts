@@ -2,7 +2,7 @@ namespace Abschlussaufgabe {
     //let serverAddress: string = "http://localhost:8100/";
     let serverAddress: string = "https://eia2-katharina-schmitt.herokuapp.com/";
 
-    export function highscoreAbschicken(_event: Event): void {
+    export function highscoreAbschicken(): void {
         let query: string = "command=insert";
         query += "&name=" + nameSpieler;
         query += "&highscore=" + punkteanzahl;

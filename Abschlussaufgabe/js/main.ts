@@ -72,7 +72,10 @@ namespace Abschlussaufgabe {
 
     function gameOver(): void { //Name eingeben um an Server zu schicken
         window.clearTimeout(timeout);
-        nameSpieler = prompt("Dein Highscore:" + punkteanzahl + "Bitte gib deinen Namen ein:")
+        nameSpieler = prompt("Dein Highscore:" + punkteanzahl + "Bitte gib deinen Namen ein:");
+        if (nameSpieler != null) {
+            highscoreAbschicken();
+        }
     }
 
 
@@ -111,7 +114,7 @@ namespace Abschlussaufgabe {
         objekteArray.push(partyFisch);
     }
 
-    function setTimeout():void {
+    function setTimeout(): void {
         timeout = window.setTimeout(update, 1000 / fps);
     }
 
