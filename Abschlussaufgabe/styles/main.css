@@ -9,7 +9,35 @@ Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde n
 #Anleitung {
     position: absolute;
     top: 0;
-    right: 5%;
+    left: 57%;
     width: 30%;
-
+}
+#Anleitung h1 {
+    text-align: center;
+}
+#Anleitung h2 {
+    text-align: center;
+    font-size: 1rem;
+}
+#Punktezahl{
+    position: absolute;
+    margin: 0;
+    bottom: 5%;
+    left: 1%;
+    font-size: 1.5rem;
+}
+#Bestenliste{
+    position: absolute;
+    top: 0%;
+    right: 2%;
+    text-align: right;
+    line-height: 70%;
+    font-size: 0.9rem;
+}
+#Bestenliste h2 {
+    font-size: 1.1rem;
+}
+button {
+    display: block;
+    margin: auto;
 }

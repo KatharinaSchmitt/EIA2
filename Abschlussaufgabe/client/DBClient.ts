@@ -38,7 +38,7 @@ namespace Abschlussaufgabe {
             console.log(alleSpielerArray);
             for (let i: number = 0; i < 5; i++) {
                 let div: HTMLDivElement = document.createElement("div");
-                div.innerHTML = `<p>${alleSpielerArray[i].name + alleSpielerArray[i].highscore}</p>`;
+                div.innerHTML = `<p>${alleSpielerArray[i].name + ": " + alleSpielerArray[i].highscore}</p>`;
                 document.getElementById("Bestenliste").appendChild(div);
             }
         }

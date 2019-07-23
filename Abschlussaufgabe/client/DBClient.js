@@ -36,7 +36,7 @@ var Abschlussaufgabe;
             console.log(alleSpielerArray);
             for (let i = 0; i < 5; i++) {
                 let div = document.createElement("div");
-                div.innerHTML = `<p>${alleSpielerArray[i].name + alleSpielerArray[i].highscore}</p>`;
+                div.innerHTML = `<p>${alleSpielerArray[i].name + ": " + alleSpielerArray[i].highscore}</p>`;
                 document.getElementById("Bestenliste").appendChild(div);
             }
         }

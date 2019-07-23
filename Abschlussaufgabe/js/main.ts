@@ -22,6 +22,7 @@ namespace Abschlussaufgabe {
     let zweiterFisch: GroßerFisch;
     export let punkteanzahl: number = 0; //Highscore
     let schwimmG: number = 10; // Schwimmgeschwindigkeit des Spielerfisches 
+    let wF: string = "Mediumblue"; //Farbe des Wassers im Hintergrund
 
     function startbildschirm(): void {
         document.getElementById("Start").addEventListener("click", init);
@@ -29,6 +30,7 @@ namespace Abschlussaufgabe {
         crc = canvas.getContext("2d");
         hintergrund();
         refresh();
+        punktezahl();
     }
 
     function init(_event: Event): void {
@@ -72,7 +74,7 @@ namespace Abschlussaufgabe {
         if (spielerfisch.w > 30) {
             gameOver();
         }
-        if (spielerfisch.w < 5) {
+        if (spielerfisch.w < 1) {
             gameOver();
         }
     }
@@ -81,7 +83,7 @@ namespace Abschlussaufgabe {
         window.clearTimeout(timeout);
         nameSpieler = prompt("Dein Highscore: " + punkteanzahl, "Bitte gib deinen Namen ein");
         highscoreAbschicken();
-        alert("neues Spiel starten");
+        alert("Neues Spiel");
         window.location.reload();
     }
 
@@ -134,21 +136,45 @@ namespace Abschlussaufgabe {
         crc.putImageData(imageData, 0, 0);
         fressen();
         typAendern();
+        farbeAendern();
         zuGross();
+        wasserAendern();
         for (let i: number = 0; i < objekteArray.length; i++) {
             objekteArray[i].update();
         }
     }
 
-    function typAendern(): void { //typ des Spielerfisches ändern, um größere Fische essen zu können + Schwimmgeschwindigkeit ändern
-        if (punkteanzahl > 200 && punkteanzahl <= 900) {
-            spielerfisch.typ = 2;
-            schwimmG = 5;
-            spielerfisch.f = "Aquamarine";
+    function wasserAendern(): void {
+        if (spielerfisch.w >= 25) {
+            wF = "RoyalBlue";
+            hintergrund();
         }
-        else if (punkteanzahl > 900) {
+        else if (spielerfisch.w <= 3) {
+            wF = "RoyalBlue";
+            hintergrund();
+        }
+        if (spielerfisch.w > 3 && spielerfisch.w < 25) {
+            wF = "Mediumblue";
+            hintergrund();
+        }
+    }
+
+    function typAendern(): void { //typ des Spielerfisches ändern, um größere Fische essen zu können + Schwimmgeschwindigkeit ändern
+        if (punkteanzahl > 200 && punkteanzahl <= 900 && spielerfisch.f != "grey") {
+            spielerfisch.typ = 2;
+            schwimmG = 7;
+        }
+        else if (punkteanzahl > 900 && spielerfisch.f != "grey") {
             spielerfisch.typ = 3;
-            schwimmG = 3;
+            schwimmG = 5;
+        }
+    }
+
+    function farbeAendern(): void {
+        if (punkteanzahl > 200 && punkteanzahl <= 900 && spielerfisch.f != "lime" && spielerfisch.f != "grey") {
+            spielerfisch.f = "LightCyan";
+        }
+        else if (punkteanzahl > 900 && spielerfisch.f != "lime" && spielerfisch.f != "grey") {
             spielerfisch.f = "MediumSeaGreen"
         }
     }
@@ -156,13 +182,8 @@ namespace Abschlussaufgabe {
     function punktezahl(): void { //Highscore anzeigen
         document.getElementById("Punktezahl").innerHTML = "";
         let div: HTMLDivElement = document.createElement("div");
-        div.innerHTML = `<p>Highscore ${punkteanzahl}</p>`;
+        div.innerHTML = `<p>Highscore: ${punkteanzahl}</p>`;
         document.getElementById("Punktezahl").appendChild(div);
-        document.getElementById("Größe").innerHTML = "";
-        let div2: HTMLDivElement = document.createElement("div");
-        let w: string = spielerfisch.w.toFixed(2);
-        div2.innerHTML = `<p>Größe ${w}</p>`;
-        document.getElementById("Größe").appendChild(div2);
     }
 
     //fressen + wachsen des Spielerfisches + Punkteanzahl erhöhen + gefressene Fische wieder neu erstellen
@@ -212,10 +233,10 @@ namespace Abschlussaufgabe {
                 else if (distanz < 20 && objekteArray[i].typ == -4) {
                     objekteArray.splice(i, 1);
                     falleFutterParty();
-                    if (schwimmG == 1) {
+                    if (schwimmG == 1 && spielerfisch.f == "lime") {
                         spielerfisch.f = "grey";
                     }
-                    else if (schwimmG > 1) {
+                    else if (schwimmG > 1 && spielerfisch.f == "lime") {
                         if (punkteanzahl <= 200) {
                             spielerfisch.typ = 1;
                             schwimmG = 10;
@@ -223,33 +244,32 @@ namespace Abschlussaufgabe {
                         }
                         else if (punkteanzahl > 200 && punkteanzahl <= 900) {
                             spielerfisch.typ = 2;
-                            schwimmG = 5;
-                            spielerfisch.f = "Aquamarine";
+                            schwimmG = 7;
+                            spielerfisch.f = "LightCyan";
                         }
                         else if (punkteanzahl > 900) {
                             spielerfisch.typ = 3;
-                            schwimmG = 3;
+                            schwimmG = 5;
                             spielerfisch.f = "MediumSeaGreen"
                         }
                     }
                 }
                 else if (distanz < 20 && objekteArray[i].typ == -5) {
                     objekteArray.splice(i, 1);
-                    spielerfisch.f = "aqua";
                     falleFutterQualle();
-                    if (punkteanzahl <= 200) {
+                    if (punkteanzahl <= 200 && spielerfisch.f != "lime") {
                         spielerfisch.typ = 1;
                         schwimmG = 10;
                         spielerfisch.f = "aqua";
                     }
-                    else if (punkteanzahl > 200 && punkteanzahl <= 900) {
+                    else if (punkteanzahl > 200 && punkteanzahl <= 900 && spielerfisch.f != "lime") {
                         spielerfisch.typ = 2;
-                        schwimmG = 5;
-                        spielerfisch.f = "Aquamarine";
+                        schwimmG = 7;
+                        spielerfisch.f = "LightCyan";
                     }
-                    else if (punkteanzahl > 900) {
+                    else if (punkteanzahl > 900 && spielerfisch.f != "lime") {
                         spielerfisch.typ = 3;
-                        schwimmG = 3;
+                        schwimmG = 5;
                         spielerfisch.f = "MediumSeaGreen"
                     }
 
@@ -330,7 +350,7 @@ namespace Abschlussaufgabe {
     function hintergrund(): void {
         let wasser: Path2D = new Path2D();
         wasser.rect(0, 0, 800, 600);
-        crc.fillStyle = "Mediumblue";
+        crc.fillStyle = wF;
         crc.fill(wasser);
         crc.stroke(wasser);
 

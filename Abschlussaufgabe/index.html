@@ -8,6 +8,7 @@ Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde n
 
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=Ca, initial-scale=1.0">
@@ -15,35 +16,42 @@ Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde n
     <link rel="stylesheet" type="text/css" href="./styles/main.css">
     <title>Blubber</title>
 </head>
+
 <body>
     <canvas width="800" height="600" style="border: 1px solid black"></canvas>
     <div id="Highscore">
         <p id="Punktezahl"></p>
-        <p id="Größe"></p>
     </div>
-    <div id="Bestenliste"></div>
+    <div id="Bestenliste">
+        <h2>Bestenliste</h2>
+    </div>
     <div id="Anleitung">
-            <h1>Blub</h1>
-            <p>Fang so viele Fische wie möglich!</p>
-            <p>Du bist der kleine blaue Fisch.
-                Die Steuerung funktioniert über die Pfeiltasten deiner Tastatur.
-                Aufgepasst!
-                Du kannst nur Fische fangen, kleiner oder genauso groß sind wie du.
-                Es kann nur mit dem Mund des Fisches gefangen werden, genauso ist aber auch nur der Mund der gegnerischen Fischen gefährlich.
-                Wenn dein Fisch seine Farbe ändert, kannst du den nächst größeren Fressen. 
-                (Sobald du eine Fischart einmal fressen kannst, ist sie dir nicht mehr gefährlich.)
-                Außerdem lauern auch ein paar Gefahren im Wasser:
-                <ul>
-                    <li>Partyfisch: die Steuerung wird umgekehrt</li>
-                    <li>Qualle: du kannst nur noch langsam schwimmen</li>
-                    <li>Anglerfisch: Game Over</li>
-                </ul>
-                Die Wirkung des Partyfisches und der Qualle können durch das Fressen des passenden Futters aufgehoben werden. 
-                Die Farbe deines Fisches zeigt dir an, welches Futter du fressen musst.
-                Das rote Futter macht deinen Fisch kleiner. Pass auf, dass dein Fisch nicht größer als 30 und nicht kleiner als 5 ist!
-            </p>
-            <button id="Start">Spiel starten</button>
-        </div>
+        <h1>Blub</h1>
+        <h2>Fange so viele Fische wie möglich!</h2>
+        <p>Du bist der kleine blaue Fisch. <br>
+            Die Steuerung funktioniert über die Pfeiltasten deiner Tastatur.</p>
+        <p>Aufgepasst!<br>
+            Du kannst nicht von Anfang an alle Fische fressen! <br>
+            Zunächst kannst du nur die Kleinsten fressen. Alle anderen sind dir gefährlich und fressen dich.
+            Erst wenn du eine gewisse Punktzahl erreicht hast, kannst du den nächstgrößeren Fisch fressen.
+            Sobald das der Fall ist, ändert sich die Farbe deines Fisches.<br>
+            Es kann nur mit dem Mund des Fisches gefangen werden, genauso ist aber auch nur der Mund der gegnerischen
+            Fischen gefährlich.</p>
+        <p>
+            Außerdem lauern auch ein paar Gefahren im Wasser:
+            <ul>
+                <li>Partyfisch: die Steuerung wird umgekehrt</li>
+                <li>Qualle: du kannst nur noch langsam schwimmen</li>
+                <li>Anglerfisch: Game Over</li>
+            </ul>
+            Die Wirkung des Partyfisches und der Qualle können durch Fressen des passenden Futters aufgehoben werden.
+            Die Farbe deines Fisches zeigt dir an, welches Futter du fressen musst. <br>
+            Das rote Futter macht deinen Fisch kleiner. <br>
+            Pass auf, dass dein Fisch nicht zu groß oder zu klein wird, sonst ist das Spiel vorbei.
+            Kurz bevor das passiert, ändert sich die Farbe des Wassers.
+        </p>
+        <button id="Start">Spiel starten</button>
+    </div>
     <script src="./js/main.js"></script>
     <script src="./js/AlleObjekte.js"></script>
     <script src="./js/BewegteObjekte.js"></script>
@@ -60,4 +68,5 @@ Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde n
     <script src="./js/FutterKlein.js"></script>
     <script src="./client/DBClient.js" type="text/javascript" charset="utf-8"></script>
 </body>
+
 </html>
