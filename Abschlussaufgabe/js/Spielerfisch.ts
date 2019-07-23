@@ -2,7 +2,7 @@ namespace Abschlussaufgabe {
     export class Spielerfisch extends AlleObjekte {
 
         w: number = 5; //Nummer, die verwendet wird, dass der Fisch wachsen kann
-        f: string = "aqua";
+        f: string = "aqua"; //Farbe des Fisches, die geändert werden kann
 
         constructor() {
             super();
