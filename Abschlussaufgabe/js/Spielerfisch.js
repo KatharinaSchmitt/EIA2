@@ -4,7 +4,7 @@ var Abschlussaufgabe;
         constructor() {
             super();
             this.w = 5; //Nummer, die verwendet wird, dass der Fisch wachsen kann
-            this.f = "aqua";
+            this.f = "aqua"; //Farbe des Fisches, die geändert werden kann
             this.x = 400;
             this.y = 300;
             this.typ = 1;

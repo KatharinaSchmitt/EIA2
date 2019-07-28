@@ -33,7 +33,6 @@ var Abschlussaufgabe;
             for (let i = 0; i < alleSpielerArray.length; i++) {
                 alleSpielerArray.sort(scoreVergleichen);
             }
-            console.log(alleSpielerArray);
             for (let i = 0; i < 5; i++) {
                 let div = document.createElement("div");
                 div.innerHTML = `<p>${alleSpielerArray[i].name + ": " + alleSpielerArray[i].highscore}</p>`;

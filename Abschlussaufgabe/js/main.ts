@@ -25,7 +25,7 @@ namespace Abschlussaufgabe {
     let wF: string = "Mediumblue"; //Farbe des Wassers im Hintergrund
 
     //Website aufbauen, wenn neu aufgerufen wird
-    function startbildschirm(): void {
+    function startbildschirm(_event: Event): void {
         document.getElementById("Start").addEventListener("click", init);
         canvas = document.getElementsByTagName("canvas")[0];
         crc = canvas.getContext("2d");
@@ -287,7 +287,7 @@ namespace Abschlussaufgabe {
     }
 
     //Highscore anzeigen
-    function punktezahl(): void { 
+    function punktezahl(): void {
         document.getElementById("Punktezahl").innerHTML = "";
         let div: HTMLDivElement = document.createElement("div");
         div.innerHTML = `<p>Highscore: ${punkteanzahl}</p>`;

@@ -35,7 +35,6 @@ namespace Abschlussaufgabe {
             for (let i: number = 0; i < alleSpielerArray.length; i++) {
                 alleSpielerArray.sort(scoreVergleichen);
             }
-            console.log(alleSpielerArray);
             for (let i: number = 0; i < 5; i++) {
                 let div: HTMLDivElement = document.createElement("div");
                 div.innerHTML = `<p>${alleSpielerArray[i].name + ": " + alleSpielerArray[i].highscore}</p>`;

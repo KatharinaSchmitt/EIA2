@@ -20,14 +20,16 @@ var Abschlussaufgabe;
     Abschlussaufgabe.punkteanzahl = 0; //Highscore
     let schwimmG = 10; // Schwimmgeschwindigkeit des Spielerfisches 
     let wF = "Mediumblue"; //Farbe des Wassers im Hintergrund
-    function startbildschirm() {
+    //Website aufbauen, wenn neu aufgerufen wird
+    function startbildschirm(_event) {
         document.getElementById("Start").addEventListener("click", init);
         Abschlussaufgabe.canvas = document.getElementsByTagName("canvas")[0];
         Abschlussaufgabe.crc = Abschlussaufgabe.canvas.getContext("2d");
         hintergrund();
-        Abschlussaufgabe.refresh();
+        Abschlussaufgabe.refresh(); //Bestenliste wird angezeigt
         punktezahl();
     }
+    //Spiel wird aufgebaut + gestartet
     function init(_event) {
         document.addEventListener("keydown", steuerungFisch);
         imageData = Abschlussaufgabe.crc.getImageData(0, 0, Abschlussaufgabe.canvas.width, Abschlussaufgabe.canvas.height);
@@ -62,21 +64,7 @@ var Abschlussaufgabe;
         Abschlussaufgabe.objekteArray.push(spielerfisch);
         update();
     }
-    function zuGross() {
-        if (spielerfisch.w > 30) {
-            gameOver();
-        }
-        if (spielerfisch.w < 1) {
-            gameOver();
-        }
-    }
-    function gameOver() {
-        window.clearTimeout(timeout);
-        Abschlussaufgabe.nameSpieler = prompt("Dein Highscore: " + Abschlussaufgabe.punkteanzahl, "Bitte gib deinen Namen ein");
-        Abschlussaufgabe.highscoreAbschicken();
-        alert("Neues Spiel");
-        window.location.reload();
-    }
+    //erstellen der Fische und des Futters
     function falleFutterKlein() {
         let futterKlein = new Abschlussaufgabe.FutterKlein();
         Abschlussaufgabe.objekteArray.push(futterKlein);
@@ -113,9 +101,7 @@ var Abschlussaufgabe;
         let partyFisch = new Abschlussaufgabe.PartyFisch();
         Abschlussaufgabe.objekteArray.push(partyFisch);
     }
-    function setTimeout() {
-        timeout = window.setTimeout(update, 1000 / fps);
-    }
+    //ständiges updaten
     function update() {
         setTimeout();
         Abschlussaufgabe.crc.clearRect(0, 0, Abschlussaufgabe.canvas.width, Abschlussaufgabe.canvas.height);
@@ -123,49 +109,14 @@ var Abschlussaufgabe;
         fressen();
         typAendern();
         farbeAendern();
-        zuGross();
         wasserAendern();
+        zuGross();
         for (let i = 0; i < Abschlussaufgabe.objekteArray.length; i++) {
             Abschlussaufgabe.objekteArray[i].update();
         }
     }
-    function wasserAendern() {
-        if (spielerfisch.w >= 25) {
-            wF = "RoyalBlue";
-            hintergrund();
-        }
-        else if (spielerfisch.w <= 3) {
-            wF = "RoyalBlue";
-            hintergrund();
-        }
-        if (spielerfisch.w > 3 && spielerfisch.w < 25) {
-            wF = "Mediumblue";
-            hintergrund();
-        }
-    }
-    function typAendern() {
-        if (Abschlussaufgabe.punkteanzahl > 200 && Abschlussaufgabe.punkteanzahl <= 900 && spielerfisch.f != "grey") {
-            spielerfisch.typ = 2;
-            schwimmG = 7;
-        }
-        else if (Abschlussaufgabe.punkteanzahl > 900 && spielerfisch.f != "grey") {
-            spielerfisch.typ = 3;
-            schwimmG = 5;
-        }
-    }
-    function farbeAendern() {
-        if (Abschlussaufgabe.punkteanzahl > 200 && Abschlussaufgabe.punkteanzahl <= 900 && spielerfisch.f != "lime" && spielerfisch.f != "grey") {
-            spielerfisch.f = "LightCyan";
-        }
-        else if (Abschlussaufgabe.punkteanzahl > 900 && spielerfisch.f != "lime" && spielerfisch.f != "grey") {
-            spielerfisch.f = "MediumSeaGreen";
-        }
-    }
-    function punktezahl() {
-        document.getElementById("Punktezahl").innerHTML = "";
-        let div = document.createElement("div");
-        div.innerHTML = `<p>Highscore: ${Abschlussaufgabe.punkteanzahl}</p>`;
-        document.getElementById("Punktezahl").appendChild(div);
+    function setTimeout() {
+        timeout = window.setTimeout(update, 1000 / fps);
     }
     //fressen + wachsen des Spielerfisches + Punkteanzahl erhöhen + gefressene Fische wieder neu erstellen
     function fressen() {
@@ -264,6 +215,63 @@ var Abschlussaufgabe;
             }
         }
     }
+    //Typ, Schwimmgeschwindigkeit, Farbe, Wasserfarbe ändern (ausgelöst durch Futter/Fisch fressen)
+    function wasserAendern() {
+        if (spielerfisch.w >= 25) {
+            wF = "RoyalBlue";
+            hintergrund();
+        }
+        else if (spielerfisch.w <= 3) {
+            wF = "RoyalBlue";
+            hintergrund();
+        }
+        if (spielerfisch.w > 3 && spielerfisch.w < 25) {
+            wF = "Mediumblue";
+            hintergrund();
+        }
+    }
+    function typAendern() {
+        if (Abschlussaufgabe.punkteanzahl > 200 && Abschlussaufgabe.punkteanzahl <= 900 && spielerfisch.f != "grey") {
+            spielerfisch.typ = 2;
+            schwimmG = 7;
+        }
+        else if (Abschlussaufgabe.punkteanzahl > 900 && spielerfisch.f != "grey") {
+            spielerfisch.typ = 3;
+            schwimmG = 5;
+        }
+    }
+    function farbeAendern() {
+        if (Abschlussaufgabe.punkteanzahl > 200 && Abschlussaufgabe.punkteanzahl <= 900 && spielerfisch.f != "lime" && spielerfisch.f != "grey") {
+            spielerfisch.f = "LightCyan";
+        }
+        else if (Abschlussaufgabe.punkteanzahl > 900 && spielerfisch.f != "lime" && spielerfisch.f != "grey") {
+            spielerfisch.f = "MediumSeaGreen";
+        }
+    }
+    //wenn Spielerfisch zu groß, dann sterben
+    function zuGross() {
+        if (spielerfisch.w > 30) {
+            gameOver();
+        }
+        if (spielerfisch.w < 1) {
+            gameOver();
+        }
+    }
+    //Game Over Funktion, Daten an Client schicken
+    function gameOver() {
+        window.clearTimeout(timeout);
+        Abschlussaufgabe.nameSpieler = prompt("Dein Highscore: " + Abschlussaufgabe.punkteanzahl, "Bitte gib deinen Namen ein");
+        Abschlussaufgabe.highscoreAbschicken();
+        alert("Neues Spiel");
+        window.location.reload();
+    }
+    //Highscore anzeigen
+    function punktezahl() {
+        document.getElementById("Punktezahl").innerHTML = "";
+        let div = document.createElement("div");
+        div.innerHTML = `<p>Highscore: ${Abschlussaufgabe.punkteanzahl}</p>`;
+        document.getElementById("Punktezahl").appendChild(div);
+    }
     //Fisch steuern
     function steuerungFisch(_event) {
         if (spielerfisch.f != "lime") {
@@ -319,6 +327,17 @@ var Abschlussaufgabe;
             }
         }
     }
+    //Random Farbe wird generiert, für Partyfisch
+    function getRandomColor() {
+        var letters = '0123456789ABCDEF';
+        var color = '#';
+        for (var i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    }
+    Abschlussaufgabe.getRandomColor = getRandomColor;
+    //Hintergrund wird gezeichnet
     function hintergrund() {
         let wasser = new Path2D();
         wasser.rect(0, 0, 800, 600);
@@ -446,14 +465,5 @@ var Abschlussaufgabe;
         Abschlussaufgabe.crc.fill(koralle);
         Abschlussaufgabe.crc.stroke(koralle);
     }
-    function getRandomColor() {
-        var letters = '0123456789ABCDEF';
-        var color = '#';
-        for (var i = 0; i < 6; i++) {
-            color += letters[Math.floor(Math.random() * 16)];
-        }
-        return color;
-    }
-    Abschlussaufgabe.getRandomColor = getRandomColor;
 })(Abschlussaufgabe || (Abschlussaufgabe = {}));
 //# sourceMappingURL=main.js.map
