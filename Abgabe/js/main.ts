@@ -73,6 +73,7 @@ namespace Interface {
     function abschicken(): void {
         //window.clearTimeout(timeout);
         nameOpfer = "Hans";
+        console.log (nameOpfer);
         fluchAbschicken();
         console.log("Abgeschickt");
         laden();

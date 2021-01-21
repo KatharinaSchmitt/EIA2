@@ -1,7 +1,7 @@
-var Voodoo;
-(function (Voodoo) {
+var Interface;
+(function (Interface) {
     document.addEventListener('DOMContentLoaded', startbildschirm);
-    Voodoo.nadeln = 0;
+    Interface.nadeln = 0;
     var keyElem = document.querySelector(".key");
     //Website aufbauen, wenn neu aufgerufen wird
     function startbildschirm(_event) {
@@ -66,8 +66,9 @@ var Voodoo;
     //Fluch mit Button abschicken
     function abschicken() {
         //window.clearTimeout(timeout);
-        Voodoo.nameOpfer = "Hans";
-        Voodoo.fluchAbschicken();
+        Interface.nameOpfer = "Hans";
+        console.log(Interface.nameOpfer);
+        Interface.fluchAbschicken();
         console.log("Abgeschickt");
         laden();
     }
@@ -81,5 +82,5 @@ var Voodoo;
         document.getElementById("animation").appendChild(div);*/
         //window.location.reload();
     }
-})(Voodoo || (Voodoo = {}));
+})(Interface || (Interface = {}));
 //# sourceMappingURL=main.js.map

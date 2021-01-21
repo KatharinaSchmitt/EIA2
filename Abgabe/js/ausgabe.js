@@ -1,5 +1,5 @@
-var Voodoo;
-(function (Voodoo) {
+var Interface;
+(function (Interface) {
     document.addEventListener('DOMContentLoaded', video);
     function video() {
         let video = document.createElement('video');
@@ -7,5 +7,5 @@ var Voodoo;
         document.getElementById("Video").appendChild(video);
         video.play();
     }
-})(Voodoo || (Voodoo = {}));
+})(Interface || (Interface = {}));
 //# sourceMappingURL=ausgabe.js.map
