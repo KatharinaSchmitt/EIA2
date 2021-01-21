@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="./styles/main.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Pangolin&display=swap" rel="stylesheet">
+    <title>Voodoo-Puppe</title>
+</head>
+
+<body>
+    <h1>Voodoo-Zauber</h1>
+    <div>
+        <h2>Nenne dein Opfer</h2>
+        <div id="name"></div>
+    </div>
+    <button id="abschicken">Fluch ausführen</button>
+
+    <div id="animation"></div>
+    <div id="löschen"> 
+        <span class="key">Löschen</span> </div>
+
+    <div id="reihe1">  
+        <span id="Q" class="key">Q</span> 
+        <span id="W" class="key">W</span> 
+        <span class="key">E</span> 
+        <span class="key">R</span> 
+        <span class="key">T</span> 
+        <span class="key">Y</span> 
+        <span class="key">U</span> 
+        <span class="key">I</span> 
+        <span class="key">O</span> 
+        <span class="key">P</span>  
+    </div>
+
+    <div id="reihe2"> 
+        <span class="key">A</span> 
+        <span class="key">S</span> 
+        <span class="key">D</span> 
+        <span class="key">F</span> 
+        <span class="key">G</span> 
+        <span class="key">H</span> 
+        <span class="key">J</span> 
+        <span class="key">K</span> 
+        <span class="key">L</span> 
+    </div>
+
+    <div id="reihe3"> 
+        <span class="key">Z</span>
+         <span class="key">X</span> 
+            <span class="key">C</span> 
+            <span class="key">V</span> 
+            <span class="key">B</span> 
+            <span class="key">N</span> 
+            <span class="key">M</span> 
+    </div>
+    <div id="leerzeichen">
+        <span id="space" class="key"></span> 
+    </div>
+
+    <div id="Bestenliste"></div>
+          
+
+    <script src="./js/main.js"></script>
+    <script src="./client/DBClient.js" type="text/javascript" charset="utf-8"></script>
+</body>
+
+</html>

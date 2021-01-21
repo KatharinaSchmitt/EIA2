@@ -1,0 +1,46 @@
+body {
+	background-color: black;
+	text-align: center;
+	font-family: 'Pangolin', cursive;
+	color:red;
+}
+h1 {
+	text-align: center;
+	font-size: 8rem;
+}
+
+h2 {
+	font-size: 4rem;
+}
+
+.key {
+	background-color: grey;
+	padding-right: 0.2em;
+	padding-bottom: 0.2em;
+	width: 3rem;
+	height: 3rem;
+	border-radius: 15%;
+	display: inline-block;
+	line-height: 3rem;
+	vertical-align: middle;
+	margin-left: 0.2em;
+	margin-top: 0.2em;
+	font-size: 2rem;
+	cursor: pointer;
+	transition: 0.1s ease;
+}
+
+ .key:active {
+	border-width: 2rem;
+	 color: #AA6666;
+	 background: #111;
+}
+
+button {
+	background-color: darkgrey;
+	font-family: 'Pangolin', cursive;
+}
+
+#space {
+	width: 20rem;
+}
