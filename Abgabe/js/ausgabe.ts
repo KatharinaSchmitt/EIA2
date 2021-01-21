@@ -1,4 +1,4 @@
-namespace Voodoo {
+namespace Interface {
     document.addEventListener('DOMContentLoaded', video);
     
     function video():void {

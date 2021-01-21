@@ -1,4 +1,4 @@
-namespace Voodoo {
+namespace Interface {
     document.addEventListener('DOMContentLoaded', startbildschirm);
     export let nameOpfer: string;
     export let nadeln: number = 0;
