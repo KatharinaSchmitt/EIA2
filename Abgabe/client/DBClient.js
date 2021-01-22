@@ -22,32 +22,33 @@ var Interface;
     function handleInsertResponse(_event) {
         let xhr = _event.target;
         if (xhr.readyState == XMLHttpRequest.DONE) {
-            alert(xhr.response);
-        }
-    }
-    function handleFindResponse(_event) {
-        let xhr = _event.target;
-        if (xhr.readyState == XMLHttpRequest.DONE) {
-            let output = document.getElementsByTagName("textarea")[0];
-            output.value = xhr.response;
-            let responseAsJson = JSON.parse(xhr.response);
-            console.log(responseAsJson);
+            console.log(xhr.response);
         }
     }
     /*function handleFindResponse(_event: ProgressEvent): void {
         let xhr: XMLHttpRequest = (<XMLHttpRequest>_event.target);
         if (xhr.readyState == XMLHttpRequest.DONE) {
-            let alleOpferArray: OpferDaten[] = JSON.parse(xhr.response);
-            /*for (let i: number = 0; i < alleOpferArray.length; i++) {
-                alleOpferArray.sort(scoreVergleichen);
-            }
-            for (let i: number = 0; i < 5; i++) {
-                let div: HTMLDivElement = document.createElement("div");
-                div.innerHTML = `<p>${alleOpferArray[i].name}</p>`;
-                document.getElementById("Bestenliste").appendChild(div);
-            }
+            let output: HTMLTextAreaElement = document.getElementsByTagName("textarea")[0];
+            output.value = xhr.response;
+            let responseAsJson: JSON = JSON.parse(xhr.response);
+            console.log(responseAsJson);
         }
     }*/
+    function handleFindResponse(_event) {
+        let xhr = _event.target;
+        if (xhr.readyState == XMLHttpRequest.DONE) {
+            let alleOpferArray = JSON.parse(xhr.response);
+            /*for (let i: number = 0; i < alleOpferArray.length; i++) {
+                alleOpferArray.sort(scoreVergleichen);
+            }*/
+            for (let i = 0; i < 5; i++) {
+                let div = document.createElement("div");
+                div.innerHTML = `<p>${alleOpferArray[i].name}</p>`;
+                document.getElementById("Bestenliste").appendChild(div);
+                console.log(div);
+            }
+        }
+    }
     /*function scoreVergleichen(a: OpferDaten, b: OpferDaten): number {
         let scoreA: number = a.nadeln;
         let scoreB: number = b.nadeln;

@@ -5,21 +5,24 @@ var Interface;
     var keyElem = document.querySelector(".key");
     //Website aufbauen, wenn neu aufgerufen wird
     function startbildschirm(_event) {
-        //document.getElementById("reihe1").addEventListener("click", tasteAnzeigen);
+        document.getElementById("Tastatur").addEventListener("click", tasteAnzeigen);
         document.addEventListener("keydown", stechen);
-        document.getElementById("abschicken").addEventListener("click", abschicken);
-        keyElem.addEventListener("click", logEvent);
-    }
-    function logEvent() {
-        document.getElementById("name").innerHTML += keyElem.innerHTML;
+        document.getElementById("abschicken").addEventListener("click", laden);
     }
     //Eingabe via Buchstaben auf Bildschirm
-    /*function tasteAnzeigen(): void {
-        let q = document.getElementById("Q");
-        document.getElementById("name").innerHTML += q.innerHTML;
-        let w = document.getElementById("W");
-        document.getElementById("name").innerHTML += w.innerHTML;
-    }*/
+    function tasteAnzeigen(_event) {
+        if (_event.target.className == "key") {
+            document.getElementById("name").innerHTML += _event.target.innerHTML;
+        }
+        if (_event.target.id == "löschen") {
+            console.log("Klappt");
+            document.getElementById("name").innerHTML = "";
+        }
+        if (_event.target.id == "space") {
+            console.log("Klappt2");
+            document.getElementById("name").innerHTML += " ";
+        }
+    }
     // Schmerzlaute bei Stechen der Puppe
     function stechen(_event) {
         if (_event.keyCode == 39) { //rechte taste = Arm
@@ -65,22 +68,24 @@ var Interface;
     }
     //Fluch mit Button abschicken
     function abschicken() {
-        //window.clearTimeout(timeout);
-        Interface.nameOpfer = "Hans";
+        Interface.nameOpfer = document.getElementById("name").innerHTML;
         console.log(Interface.nameOpfer);
         Interface.fluchAbschicken();
         console.log("Abgeschickt");
-        laden();
+        //setTimeout(neuLaden, 5000);
     }
+    /*function neuLaden(): void {
+        window.location.reload();
+    }*/
     //Ladeanimation
     function laden() {
         console.log("laden");
-        /*let div: HTMLDivElement = document.createElement("div");
-        div.innerHTML = `
-        <img src="./animation/rauch.gif" alt="rauch" width: 50%>
-        `;
-        document.getElementById("animation").appendChild(div);*/
-        //window.location.reload();
+        let video = document.createElement('video');
+        video.setAttribute('src', './animation/laden.mp4');
+        video.setAttribute('width', '40%');
+        document.getElementById("animation").appendChild(video);
+        video.play();
+        abschicken();
     }
 })(Interface || (Interface = {}));
 //# sourceMappingURL=main.js.map
