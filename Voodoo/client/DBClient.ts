@@ -1,6 +1,6 @@
 namespace Voodoo {
     //let serverAddress: string = "http://localhost:8100/";
-    let serverAddress: string = "https://eia2-katharina-schmitt.herokuapp.com/";
+    let serverAddress: string = "https://eia2-julian.herokuapp.com/";
 
     export function fluchAbschicken(): void {
         let query: string = "command=insert";
