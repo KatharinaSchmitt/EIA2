@@ -7,7 +7,7 @@ let db: Mongo.Db;
 let opferData: Mongo.Collection;
 
 if (process.env.NODE_ENV == "production") {
-    databaseURL = "mongodb+srv://Katharina:schmitt@eia2db-aru8k.mongodb.net/Hogwarts";
+    databaseURL = "mongodb+srv://Katharina:2Katharina12!@eia2db-aru8k.mongodb.net/Hogwarts";
     databaseName = "Hogwarts";
 }
 
