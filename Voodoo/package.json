@@ -1,11 +1,11 @@
 {
 	"name": "miniserver",
 	"version": "1.0.0",
-	"description": "Abschlussaufgabe",
+	"description": "ID",
 	"author": "Katharina Schmitt",
 	"main": "Server.js",
 	"scripts": {
-		"start": "node Abschlussaufgabe/server/Server.js"
+		"start": "node Voodoo/server/Server.js"
 	},
 	"engines": {
 		"node": "8.11.3"
