@@ -1,11 +1,8 @@
 namespace ID {
     document.addEventListener('DOMContentLoaded', startbildschirm);
     export let nameOpfer: string;
-    export let nadeln: number = 0;
-    //var keyElem = document.querySelector(".key");
-
-
-
+    //export let nadeln: number = 0;
+    
     //Website aufbauen, wenn neu aufgerufen wird
     function startbildschirm(_event: Event): void {
         document.getElementById("Tastatur").addEventListener("click", tasteAnzeigen);

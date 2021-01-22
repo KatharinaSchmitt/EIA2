@@ -1,8 +1,7 @@
 var ID;
 (function (ID) {
     document.addEventListener('DOMContentLoaded', startbildschirm);
-    ID.nadeln = 0;
-    //var keyElem = document.querySelector(".key");
+    //export let nadeln: number = 0;
     //Website aufbauen, wenn neu aufgerufen wird
     function startbildschirm(_event) {
         document.getElementById("Tastatur").addEventListener("click", tasteAnzeigen);
