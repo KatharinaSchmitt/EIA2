@@ -1,4 +1,4 @@
-import * as Mongo from "mongodb";
+/*import * as Mongo from "mongodb";
 console.log("Database starting");
 
 let databaseURL: string = "mongodb://localhost:27017";
@@ -41,4 +41,4 @@ export function findAll(_callback: Function): void {
         else
             _callback(JSON.stringify(spielerArray));
     }
-}
+}*/

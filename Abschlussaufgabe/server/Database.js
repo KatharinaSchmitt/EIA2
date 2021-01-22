@@ -1,17 +1,19 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const Mongo = require("mongodb");
+/*import * as Mongo from "mongodb";
 console.log("Database starting");
-let databaseURL = "mongodb://localhost:27017";
-let databaseName = "test";
-let db;
-let spielerData;
+
+let databaseURL: string = "mongodb://localhost:27017";
+let databaseName: string = "test";
+let db: Mongo.Db;
+let spielerData: Mongo.Collection;
+
 if (process.env.NODE_ENV == "production") {
     databaseURL = "mongodb+srv://Katharina:schmitt@eia2db-aru8k.mongodb.net/Hogwarts";
     databaseName = "Hogwarts";
 }
+
 Mongo.MongoClient.connect(databaseURL, { connectTimeoutMS: 8000 }, handleConnect);
-function handleConnect(_e, _client) {
+
+function handleConnect(_e: Mongo.MongoError, _client: Mongo.MongoClient): void {
     if (_e)
         console.log("Unable to connect to database, error: ", _e);
     else {
@@ -20,22 +22,24 @@ function handleConnect(_e, _client) {
         spielerData = db.collection("highscoreFische ");
     }
 }
-function insert(_doc) {
+
+export function insert(_doc: SpielerDaten): void {
     spielerData.insertOne(_doc, handleInsert);
 }
-exports.insert = insert;
-function handleInsert(_e) {
+
+function handleInsert(_e: Mongo.MongoError): void {
     console.log("Database insertion returned -> " + _e);
 }
-function findAll(_callback) {
-    var cursor = spielerData.find();
+
+export function findAll(_callback: Function): void {
+    var cursor: Mongo.Cursor = spielerData.find();
     cursor.toArray(prepareAnswer);
-    function prepareAnswer(_e, spielerArray) {
+
+    function prepareAnswer(_e: Mongo.MongoError, spielerArray: SpielerDaten[]): void {
         if (_e)
             _callback("Error" + _e);
         else
             _callback(JSON.stringify(spielerArray));
     }
-}
-exports.findAll = findAll;
+}*/ 
 //# sourceMappingURL=Database.js.map

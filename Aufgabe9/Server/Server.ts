@@ -3,8 +3,8 @@
  * @author: Jirka Dell'Oro-Friedl
  * @adapted: Lukas Scheuerle
  */
-
-/*import * as Http from "http";
+/*
+import * as Http from "http";
 import * as Url from "url";
 import * as Database from "./Database";
 

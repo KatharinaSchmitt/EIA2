@@ -1,26 +1,32 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const Http = require("http");
-const Url = require("url");
-const Database = require("./Database");
+/*import * as Http from "http";
+import * as Url from "url";
+import * as Database from "./Database";
+
 console.log("Server starting");
-let port = Number(process.env.PORT);
+
+let port: number = Number(process.env.PORT);
 if (!port)
     port = 8100;
-let server = Http.createServer();
+
+let server: Http.Server = Http.createServer();
 server.addListener("listening", handleListen);
 server.addListener("request", handleRequest);
 server.listen(port);
-function handleListen() {
+
+
+function handleListen(): void {
     console.log("Listening on port: " + port);
 }
-function handleRequest(_request, _response) {
+
+function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerResponse): void {
     console.log("Request received");
-    let query = Url.parse(_request.url, true).query;
-    let command = query["command"];
+
+    let query: Highscore = <Highscore>Url.parse(_request.url, true).query;
+    let command: string = query["command"];
+
     switch (command) {
         case "insert":
-            let spieler = {
+            let spieler: SpielerDaten = {
                 name: query["name"],
                 highscore: parseInt(query["highscore"])
             };
@@ -34,14 +40,17 @@ function handleRequest(_request, _response) {
             respond(_response, "unknown command: " + command);
             break;
     }
-    function findCallback(json) {
+
+    function findCallback(json: string): void {
         respond(_response, json);
     }
 }
-function respond(_response, _text) {
+
+function respond(_response: Http.ServerResponse, _text: string): void {
     _response.setHeader("Access-Control-Allow-Origin", "*");
     _response.setHeader("content-type", "text/html; charset=utf-8");
     _response.write(_text);
     _response.end();
 }
+*/ 
 //# sourceMappingURL=Server.js.map
