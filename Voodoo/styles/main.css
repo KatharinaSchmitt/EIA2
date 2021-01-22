@@ -15,6 +15,7 @@ h1 {
 h2 {
 	font-size: 4rem;
 	font-family: 'Josefin Sans', sans-serif;
+	color: white;
 }
 
 span {
@@ -39,15 +40,18 @@ span {
 
  .key:active {
 	border-width: 0.5rem;
-	 color: #ff0000;
+	 color: #ffffff;
+	 border-color: rgb(255, 255, 255);
 }
 
 button {
-	background-color: darkgrey;
+	background-color: rgb(255, 255, 255);
 	font-family: 'Jolly Lodger', cursive;
+	font-size: 4rem;
 	border-style: solid;
 	border-width: thick;
 	border-color: red;
+	padding: 0 1rem;
 }
 
 #space {
@@ -56,7 +60,8 @@ button {
 }
 #space:active {
 	border-width: 0.5rem;
-	 color: #ff0000;
+	 color: #ffffff;
+	 border-color: rgb(255, 255, 255);
 }
 #löschen {
 	font-size: 2.5rem;
@@ -65,8 +70,8 @@ button {
 }
 #löschen:active {
 	border-width: 0.5rem;
-	 color: #ff0000;
-	 background-color: rgb(255, 0, 0)230, 8, 8);
+	 color: #ffffff;
+	 border-color: rgb(255, 255, 255);
 }
 
 #name {
