@@ -6,7 +6,6 @@ namespace Interface {
         let query: string = "command=insert";
         query += "&name=" + nameOpfer;
         sendRequest(query, handleInsertResponse);
-        
     }
 
     export function refresh(): void {
