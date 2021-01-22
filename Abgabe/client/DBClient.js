@@ -46,6 +46,7 @@ var Interface;
                 div.innerHTML = `<p>${alleOpferArray[i].name}</p>`;
                 document.getElementById("Bestenliste").appendChild(div);
                 console.log(div);
+                console.log("angekommen");
             }
         }
     }
