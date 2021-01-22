@@ -1,4 +1,4 @@
-/*namespace Abschlussaufgabe {
+/*/namespace Abschlussaufgabe {
     //let serverAddress: string = "http://localhost:8100/";
     let serverAddress: string = "https://eia2-katharina-schmitt.herokuapp.com/";
 
@@ -54,4 +54,4 @@
         }
         return 0;
     }
-}/*
+}*/

@@ -6,7 +6,7 @@ Datum: <27.07.2019>
 	
 Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und auch nicht diktiert.*/
 
-namespace Abschlussaufgabe {
+/*namespace Abschlussaufgabe {
     document.addEventListener("DOMContentLoaded", startbildschirm);
     export let crc: CanvasRenderingContext2D;
     export let canvas: HTMLCanvasElement;
@@ -491,4 +491,4 @@ namespace Abschlussaufgabe {
         crc.fill(koralle);
         crc.stroke(koralle);
     }
-}
+}*/

@@ -1,0 +1,87 @@
+html {
+	text-align: center;
+	font-family: 'Jolly Lodger', cursive;
+	color:red;
+	background-color: rgb(0, 0, 0);
+}
+h1 {
+	text-align: center;
+	font-size: 6rem;
+	font-family: 'Jolly Lodger', cursive;
+	margin: 0;
+	padding: 0;
+	color: rgb(255, 0, 0);
+	font-style: normal;
+}
+
+h2 {
+	font-size: 4rem;
+	font-family: 'Josefin Sans', sans-serif;
+	color: white;
+}
+
+span {
+
+	background-color: rgb(0, 0, 0);
+	padding: 0.2em;
+	width: 3rem;
+	height: 3rem;
+	border-style: solid;
+	border-width: thin;
+	border-color: red;
+	border-radius: 15%;
+	display: inline-block;
+	line-height: 3rem;
+	vertical-align: middle;
+	margin-left: 0.3em;
+	margin-top: 0.3em;
+	font-size: 2.5rem;
+	cursor: pointer;
+	transition: 0.1s ease;
+}
+
+ .key:active {
+	border-width: 0.5rem;
+	 color: #ffffff;
+	 border-color: rgb(255, 255, 255);
+}
+
+button {
+	background-color: rgb(255, 255, 255);
+	font-family: 'Jolly Lodger', cursive;
+	font-size: 4rem;
+	border-style: solid;
+	border-width: thick;
+	border-color: red;
+	padding: 0 1rem;
+}
+
+#space {
+	width: 23rem;
+	border-radius: 15%;
+}
+#space:active {
+	border-width: 0.5rem;
+	 color: #ffffff;
+	 border-color: rgb(255, 255, 255);
+}
+#löschen {
+	font-size: 2.5rem;
+	width: 8rem;
+	display: inline-block;
+}
+#löschen:active {
+	border-width: 0.5rem;
+	 color: #ffffff;
+	 border-color: rgb(255, 255, 255);
+}
+
+#name {
+	padding: 2rem;
+	font-family: 'Josefin Sans', sans-serif;
+}
+
+#tastatur {
+	position: absolute;
+	
+}
