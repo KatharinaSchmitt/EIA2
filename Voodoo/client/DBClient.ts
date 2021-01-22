@@ -1,30 +1,33 @@
-var Interface;
-(function (Interface) {
+namespace Voodoo {
     //let serverAddress: string = "http://localhost:8100/";
-    let serverAddress = "https://eia2-katharina-schmitt.herokuapp.com/";
-    function fluchAbschicken() {
-        let query = "command=insert";
-        query += "&name=" + Interface.nameOpfer;
+    let serverAddress: string = "https://eia2-katharina-schmitt.herokuapp.com/";
+
+    export function fluchAbschicken(): void {
+        let query: string = "command=insert";
+        query += "&name=" + nameOpfer;
         sendRequest(query, handleInsertResponse);
     }
-    Interface.fluchAbschicken = fluchAbschicken;
-    function refresh() {
-        let query = "command=refresh";
+
+    export function refresh(): void {
+        let query: string = "command=refresh";
         sendRequest(query, handleFindResponse);
     }
-    Interface.refresh = refresh;
-    function sendRequest(_query, _callback) {
-        let xhr = new XMLHttpRequest();
+
+    function sendRequest(_query: string, _callback: EventListener): void {
+        let xhr: XMLHttpRequest = new XMLHttpRequest();
         xhr.open("GET", serverAddress + "?" + _query, true);
         xhr.addEventListener("readystatechange", _callback);
         xhr.send();
     }
-    function handleInsertResponse(_event) {
-        let xhr = _event.target;
+
+    function handleInsertResponse(_event: ProgressEvent): void {
+        let xhr: XMLHttpRequest = (<XMLHttpRequest>_event.target);
         if (xhr.readyState == XMLHttpRequest.DONE) {
             console.log(xhr.response);
         }
     }
+
+
     /*function handleFindResponse(_event: ProgressEvent): void {
         let xhr: XMLHttpRequest = (<XMLHttpRequest>_event.target);
         if (xhr.readyState == XMLHttpRequest.DONE) {
@@ -34,15 +37,16 @@ var Interface;
             console.log(responseAsJson);
         }
     }*/
-    function handleFindResponse(_event) {
-        let xhr = _event.target;
+
+    function handleFindResponse(_event: ProgressEvent): void {
+        let xhr: XMLHttpRequest = (<XMLHttpRequest>_event.target);
         if (xhr.readyState == XMLHttpRequest.DONE) {
-            let alleOpferArray = JSON.parse(xhr.response);
+            let alleOpferArray: OpferDaten[] = JSON.parse(xhr.response);
             /*for (let i: number = 0; i < alleOpferArray.length; i++) {
                 alleOpferArray.sort(scoreVergleichen);
             }*/
-            for (let i = 0; i < 5; i++) {
-                let div = document.createElement("div");
+            for (let i: number = 0; i < 5; i++) {
+                let div: HTMLDivElement = document.createElement("div");
                 div.innerHTML = `<p>${alleOpferArray[i].name}</p>`;
                 document.getElementById("Bestenliste").appendChild(div);
                 console.log(div);
@@ -50,6 +54,7 @@ var Interface;
             }
         }
     }
+
     /*function scoreVergleichen(a: OpferDaten, b: OpferDaten): number {
         let scoreA: number = a.nadeln;
         let scoreB: number = b.nadeln;
@@ -61,5 +66,4 @@ var Interface;
         }
         return 0;
     }*/
-})(Interface || (Interface = {}));
-//# sourceMappingURL=DBClient.js.map
+}

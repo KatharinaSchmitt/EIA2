@@ -1,16 +1,20 @@
-var Interface;
-(function (Interface) {
+namespace Voodoo {
     document.addEventListener('DOMContentLoaded', startbildschirm);
-    Interface.nadeln = 0;
+    export let nameOpfer: string;
+    export let nadeln: number = 0;
     var keyElem = document.querySelector(".key");
+
+
+
     //Website aufbauen, wenn neu aufgerufen wird
-    function startbildschirm(_event) {
+    function startbildschirm(_event: Event): void {
         document.getElementById("Tastatur").addEventListener("click", tasteAnzeigen);
         document.addEventListener("keydown", stechen);
         document.getElementById("abschicken").addEventListener("click", laden);
     }
+
     //Eingabe via Buchstaben auf Bildschirm
-    function tasteAnzeigen(_event) {
+    function tasteAnzeigen(_event: any): void {
         if (_event.target.className == "key") {
             document.getElementById("name").innerHTML += _event.target.innerHTML;
         }
@@ -23,8 +27,9 @@ var Interface;
             document.getElementById("name").innerHTML += " ";
         }
     }
+
     // Schmerzlaute bei Stechen der Puppe
-    function stechen(_event) {
+    function stechen(_event: KeyboardEvent): void {
         if (_event.keyCode == 39) { //rechte taste = Arm
             let sound = new Audio();
             sound.src = "./sounds/arm.mp3";
@@ -66,26 +71,29 @@ var Interface;
             sound.play();
         }
     }
+
     //Fluch mit Button abschicken
-    function abschicken() {
-        Interface.nameOpfer = document.getElementById("name").innerHTML;
-        console.log(Interface.nameOpfer);
-        Interface.fluchAbschicken();
+    function abschicken(): void {
+        nameOpfer = document.getElementById("name").innerHTML;
+        console.log(nameOpfer);
+        fluchAbschicken();
         console.log("Abgeschickt");
         //setTimeout(neuLaden, 5000);
     }
+
     /*function neuLaden(): void {
         window.location.reload();
     }*/
+
     //Ladeanimation
-    function laden() {
+    function laden(): void {
         console.log("laden");
         let video = document.createElement('video');
         video.setAttribute('src', './animation/laden.mp4');
-        video.setAttribute('width', '40%');
+        video.setAttribute('width', '40%')
         document.getElementById("animation").appendChild(video);
         video.play();
         abschicken();
     }
-})(Interface || (Interface = {}));
-//# sourceMappingURL=main.js.map
+
+}
