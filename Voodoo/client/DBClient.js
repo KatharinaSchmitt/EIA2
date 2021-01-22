@@ -1,7 +1,7 @@
 var Voodoo;
 (function (Voodoo) {
     //let serverAddress: string = "http://localhost:8100/";
-    let serverAddress = "https://eia2-julian.herokuapp.com/";
+    let serverAddress = "https://eia2-katharina-schmitt.herokuapp.com/";
     function fluchAbschicken() {
         let query = "command=insert";
         query += "&name=" + Voodoo.nameOpfer;
