@@ -1,10 +1,16 @@
 namespace ID {
     document.addEventListener('DOMContentLoaded', startbildschirm);
     export let nameOpfer: string;
-    //export let nadeln: number = 0;
-    
-    //Website aufbauen, wenn neu aufgerufen wird
+
     function startbildschirm(_event: Event): void {
+        document.getElementById("später").hidden = true;
+        document.getElementById("starte").addEventListener("click", starten);
+    }
+
+    //Website aufbauen, wenn neu aufgerufen wird
+    function starten(): void {
+        document.getElementById("später").hidden = false;
+        document.getElementById("anleitung").hidden = true;
         document.getElementById("Tastatur").addEventListener("click", tasteAnzeigen);
         document.addEventListener("keydown", stechen);
         document.getElementById("abschicken").addEventListener("click", laden);
@@ -69,28 +75,40 @@ namespace ID {
         }
     }
 
+  //Ladeanimation
+    function laden(): void {
+        nameOpfer = document.getElementById("name").innerHTML;
+        if ( nameOpfer!= "") {
+            console.log("laden");
+            document.getElementById("Tastatur").innerHTML = "";
+            document.getElementById("abschicken").innerHTML = "";
+            let video = document.createElement('video');
+            video.setAttribute('src', './animation/rauch.mp4');
+            video.setAttribute('width', '70%');
+            video.setAttribute('margin', '0px');
+            document.getElementById("animation").appendChild(video);
+            video.play();
+            abschicken();
+        }
+        if (nameOpfer == "") {
+            alert("Stop");
+            startbildschirm;
+        }
+    }
     //Fluch mit Button abschicken
     function abschicken(): void {
         nameOpfer = document.getElementById("name").innerHTML;
         console.log(nameOpfer);
         fluchAbschicken();
         console.log("Abgeschickt");
-        //setTimeout(neuLaden, 5000);
+        refresh();
+        setTimeout(neuLaden, 6000);
     }
 
-    /*function neuLaden(): void {
+    function neuLaden(): void {
         window.location.reload();
-    }*/
-
-    //Ladeanimation
-    function laden(): void {
-        console.log("laden");
-        let video = document.createElement('video');
-        video.setAttribute('src', './animation/laden.mp4');
-        video.setAttribute('width', '40%')
-        document.getElementById("animation").appendChild(video);
-        video.play();
-        abschicken();
     }
+
+  
 
 }

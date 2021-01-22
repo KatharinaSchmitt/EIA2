@@ -29,29 +29,25 @@ var ID;
     function handleFindResponse(_event) {
         let xhr = _event.target;
         if (xhr.readyState == XMLHttpRequest.DONE) {
-            let alleOpferArray = JSON.parse(xhr.response);
-            /*for (let i: number = 0; i < alleOpferArray.length; i++) {
-                alleOpferArray.sort(scoreVergleichen);
-            }*/
-            for (let i = 0; i < 5; i++) {
-                let div = document.createElement("div");
-                div.innerHTML = `<p>${alleOpferArray[i].name}</p>`;
-                document.getElementById("Bestenliste").appendChild(div);
-                console.log(div);
-                console.log("angekommen");
+            let video = document.createElement('video');
+            video.setAttribute('src', './animation/voodoo.mp4');
+            document.getElementById("alles").appendChild(video);
+            video.play();
+            if (video.ended == true) {
+                document.getElementById("alles").innerHTML = "";
+                let h1 = document.createElement("h1");
+                h1.innerHTML = `<h1>Ausgesprochene Flüche</h1>`;
+                document.getElementById("alles").appendChild(h1);
+                let alleOpferArray = JSON.parse(xhr.response);
+                for (let i = 0; i < 10; i++) {
+                    let div = document.createElement("div");
+                    div.innerHTML = `<p id="${alleOpferArray[i].name}">${alleOpferArray[i].name}</p>`;
+                    document.getElementById("alles").appendChild(div);
+                    console.log(div);
+                    console.log("angekommen");
+                }
             }
         }
     }
-    /*function scoreVergleichen(a: OpferDaten, b: OpferDaten): number {
-        let scoreA: number = a.nadeln;
-        let scoreB: number = b.nadeln;
-        if (scoreA < scoreB) {
-            return 1;
-        }
-        if (scoreA > scoreB) {
-            return -1;
-        }
-        return 0;
-    }*/
 })(ID || (ID = {}));
 //# sourceMappingURL=DBClient.js.map
