@@ -1,6 +1,6 @@
 import * as Http from "http";
 import * as Url from "url";
-import * as Database from "./Database";
+import * as Database from "./Database.js";
 
 console.log("Server starting");
 
