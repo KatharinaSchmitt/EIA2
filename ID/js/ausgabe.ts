@@ -17,8 +17,8 @@ namespace ID {
 
     function prototyp(): void {
         document.getElementById("alles").innerHTML = "";
-        let h1: HTMLHeadingElement = document.createElement("h1");
-        h1.innerHTML = `<h1>Ausgesprochene Flüche</h1>`;
+        let h1: HTMLDivElement = document.createElement("div");
+        h1.innerHTML = `<img src="./animation/Opfer2.png">`;
         document.getElementById("alles").appendChild(h1);
         let div: HTMLDivElement = document.createElement("div");
         div.innerHTML = `<p>Dolores Umbridge</p>`;
@@ -65,8 +65,8 @@ namespace ID {
 
     function anhang ():void {
         document.getElementById("alles").innerHTML = "";
-        let h1: HTMLHeadingElement = document.createElement("h1");
-        h1.innerHTML = `<h1>Ausgesprochene Flüche</h1>`;
+        let h1: HTMLDivElement = document.createElement("div");
+        h1.innerHTML = `<img src="./animation/Opfer2.png">`;
         document.getElementById("alles").appendChild(h1);
         let div0: HTMLDivElement = document.createElement("div");
         div0.innerHTML = `<p>Tom Riddle</p>`;

@@ -16,8 +16,8 @@ var ID;
     document.getElementById("Start").addEventListener("click", prototyp);
     function prototyp() {
         document.getElementById("alles").innerHTML = "";
-        let h1 = document.createElement("h1");
-        h1.innerHTML = `<h1>Ausgesprochene Flüche</h1>`;
+        let h1 = document.createElement("div");
+        h1.innerHTML = `<img src="./animation/Opfer2.png">`;
         document.getElementById("alles").appendChild(h1);
         let div = document.createElement("div");
         div.innerHTML = `<p>Dolores Umbridge</p>`;
@@ -62,8 +62,8 @@ var ID;
     }
     function anhang() {
         document.getElementById("alles").innerHTML = "";
-        let h1 = document.createElement("h1");
-        h1.innerHTML = `<h1>Ausgesprochene Flüche</h1>`;
+        let h1 = document.createElement("div");
+        h1.innerHTML = `<img src="./animation/Opfer2.png">`;
         document.getElementById("alles").appendChild(h1);
         let div0 = document.createElement("div");
         div0.innerHTML = `<p>Tom Riddle</p>`;

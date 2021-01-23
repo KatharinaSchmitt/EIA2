@@ -91,7 +91,7 @@ namespace ID {
             abschicken();
         }
         if (nameOpfer == "") {
-            alert("Stop");
+            alert("Wer ist dein Opfer? Gib einen Namen ein.");
             startbildschirm;
         }
     }

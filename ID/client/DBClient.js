@@ -35,8 +35,8 @@ var ID;
             video.play();
             if (video.ended == true) {
                 document.getElementById("alles").innerHTML = "";
-                let h1 = document.createElement("h1");
-                h1.innerHTML = `<h1>Ausgesprochene Flüche</h1>`;
+                let h1 = document.createElement("div");
+                h1.innerHTML = `<img src="./animation/Opfer2.png">`;
                 document.getElementById("alles").appendChild(h1);
                 let alleOpferArray = JSON.parse(xhr.response);
                 for (let i = 0; i < 10; i++) {

@@ -37,10 +37,10 @@ namespace ID {
             video.play();
             if (video.ended == true) {
                 document.getElementById("alles").innerHTML = "";
-                let h1: HTMLHeadingElement = document.createElement("h1");
-                h1.innerHTML = `<h1>Ausgesprochene Flüche</h1>`;
+                let h1: HTMLDivElement = document.createElement("div");
+                h1.innerHTML = `<img src="./animation/Opfer2.png">`;
                 document.getElementById("alles").appendChild(h1);
-                
+
                 let alleOpferArray: OpferDaten[] = JSON.parse(xhr.response);
                 for (let i: number = 0; i < 10; i++) {
 

@@ -7,6 +7,7 @@ html {
 }
 
 img {
+	margin: 2% 0 0 0;
 	width: 70%;
 }
 
@@ -53,12 +54,15 @@ button {
 	border-radius: 15px;
 	box-shadow: 0 5px rgb(29, 29, 29);
 	cursor: pointer;
+	text-shadow: 3px 3px 15px rgb(255, 0, 0);
+}
+
+#abschicken:hover {
+	color: #eeeeee;
 }
 
 #abschicken {
-	position: absolute;
-	bottom: 45%;
-	left: 500px;
+	margin: 1% 0 2% 0;
 }
 
 #space {
@@ -90,13 +94,12 @@ button {
 	font-size: 4rem;
 	color: #ffffff;
 	text-shadow: 0.1rem 0.1rem 1rem red;
+	height: 2.5rem;
 }
 
 #Tastatur {
 	text-align: center;
-	display:block;
-	position: fixed;
-	bottom: 2%;
+	display: block;
 }
 #animation {
 	position: absolute;
@@ -104,8 +107,11 @@ button {
 }
 
 #anleitung {
-	position:fixed;
-	bottom: 5%;
+	background-image: url("Anleitung.gif");
+	background-size: 31%;
+	background-position: 97% 120%;
+	background-repeat: no-repeat;
+	padding: 0 0 3.5% 0;
 }
 #klein {
 	color: #eeeeee;
@@ -126,9 +132,12 @@ button {
 	font-family: 'Josefin Sans', sans-serif;
 }
 #starte {
+	font-size: 6rem;
+	width: 30%;
 	margin: 2%;
 	cursor: pointer;
 }
 #starte:hover {
-	 color: #eeeeee;;
+	 color: #eeeeee;
 }
+
