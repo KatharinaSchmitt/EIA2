@@ -101,7 +101,6 @@ namespace ID {
         console.log(nameOpfer);
         fluchAbschicken();
         console.log("Abgeschickt");
-        refresh();
         setTimeout(neuLaden, 6000);
     }
 

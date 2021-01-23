@@ -53,6 +53,9 @@ var ID;
     }
     function video() {
         document.getElementById("alles").innerHTML = "";
+        let name = document.createElement("h1");
+        name.innerHTML = `Tom Riddle`;
+        document.getElementById("alles").appendChild(name);
         let video = document.createElement('video');
         video.setAttribute('src', './animation/voodoo.mp4');
         video.setAttribute('width', '768px');

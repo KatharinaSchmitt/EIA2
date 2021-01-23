@@ -31,6 +31,11 @@ namespace ID {
     function handleFindResponse(_event: ProgressEvent): void {
         let xhr: XMLHttpRequest = (<XMLHttpRequest>_event.target);
         if (xhr.readyState == XMLHttpRequest.DONE) {
+            let alleOpferArray: OpferDaten[] = JSON.parse(xhr.response);
+            document.getElementById("alles").innerHTML = "";
+            let name: HTMLHeadingElement = document.createElement("h1");
+            name.innerHTML = `${alleOpferArray[0].name}`;
+            document.getElementById("alles").appendChild(name);
             let video = document.createElement('video');
             video.setAttribute('src', './animation/voodoo.mp4');
             document.getElementById("alles").appendChild(video);
@@ -40,8 +45,6 @@ namespace ID {
                 let h1: HTMLDivElement = document.createElement("div");
                 h1.innerHTML = `<img src="./animation/Opfer2.png">`;
                 document.getElementById("alles").appendChild(h1);
-
-                let alleOpferArray: OpferDaten[] = JSON.parse(xhr.response);
                 for (let i: number = 0; i < 10; i++) {
 
                     let div: HTMLDivElement = document.createElement("div");

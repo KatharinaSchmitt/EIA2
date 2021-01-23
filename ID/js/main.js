@@ -96,7 +96,6 @@ var ID;
         console.log(ID.nameOpfer);
         ID.fluchAbschicken();
         console.log("Abgeschickt");
-        ID.refresh();
         setTimeout(neuLaden, 6000);
     }
     function neuLaden() {

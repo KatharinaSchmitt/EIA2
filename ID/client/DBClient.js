@@ -29,6 +29,11 @@ var ID;
     function handleFindResponse(_event) {
         let xhr = _event.target;
         if (xhr.readyState == XMLHttpRequest.DONE) {
+            let alleOpferArray = JSON.parse(xhr.response);
+            document.getElementById("alles").innerHTML = "";
+            let name = document.createElement("h1");
+            name.innerHTML = `${alleOpferArray[0].name}`;
+            document.getElementById("alles").appendChild(name);
             let video = document.createElement('video');
             video.setAttribute('src', './animation/voodoo.mp4');
             document.getElementById("alles").appendChild(video);
@@ -38,7 +43,6 @@ var ID;
                 let h1 = document.createElement("div");
                 h1.innerHTML = `<img src="./animation/Opfer2.png">`;
                 document.getElementById("alles").appendChild(h1);
-                let alleOpferArray = JSON.parse(xhr.response);
                 for (let i = 0; i < 10; i++) {
                     let div = document.createElement("div");
                     div.innerHTML = `<p id="${alleOpferArray[i].name}">${alleOpferArray[i].name}</p>`;

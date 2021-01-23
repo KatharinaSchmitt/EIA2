@@ -55,6 +55,9 @@ namespace ID {
 
     function video(): void {
         document.getElementById("alles").innerHTML = "";
+        let name: HTMLHeadingElement = document.createElement("h1");
+        name.innerHTML = `Tom Riddle`;
+        document.getElementById("alles").appendChild(name);
         let video = document.createElement('video');
         video.setAttribute('src', './animation/voodoo.mp4');
         video.setAttribute('width', '768px');
