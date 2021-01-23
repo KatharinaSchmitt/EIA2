@@ -8,7 +8,7 @@ namespace ID {
     }
 
     //Website aufbauen, wenn neu aufgerufen wird
-    function starten(): void {
+    function starten(_event:Event): void {
         document.getElementById("später").hidden = false;
         document.getElementById("anleitung").hidden = true;
         document.getElementById("Tastatur").addEventListener("click", tasteAnzeigen);
@@ -76,7 +76,7 @@ namespace ID {
     }
 
   //Ladeanimation
-    function laden(): void {
+    function laden(_event:Event): void {
         nameOpfer = document.getElementById("name").innerHTML;
         if ( nameOpfer!= "") {
             console.log("laden");

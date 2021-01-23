@@ -6,7 +6,7 @@ var ID;
         document.getElementById("starte").addEventListener("click", starten);
     }
     //Website aufbauen, wenn neu aufgerufen wird
-    function starten() {
+    function starten(_event) {
         document.getElementById("später").hidden = false;
         document.getElementById("anleitung").hidden = true;
         document.getElementById("Tastatur").addEventListener("click", tasteAnzeigen);
@@ -71,7 +71,7 @@ var ID;
         }
     }
     //Ladeanimation
-    function laden() {
+    function laden(_event) {
         ID.nameOpfer = document.getElementById("name").innerHTML;
         if (ID.nameOpfer != "") {
             console.log("laden");
